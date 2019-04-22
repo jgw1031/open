@@ -2,7 +2,9 @@
 
 int main()
 {
-
+for(;;) {
+  printf("1");
+}
 printf("hello world!");
 }
 return 0;
