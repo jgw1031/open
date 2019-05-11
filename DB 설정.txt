@@ -1,8 +1,9 @@
-»ç¿ëÀÚ
-ÀÌ¸§NAME ¾ÆÀÌµðID  ºñ¹øPASSWORD ³ªÀÌAGE ¼ºº°GENDER ÇÚµåÆù¹øÈ£PHONE ¿©Çà°´/°¡ÀÌµå ÆÇº°¹øÈ£Discrimination ¾ÆÀÌµð°íÀ¯¹øÈ£(±âº»)UNIQUE
-°¡ÀÌµå
-¼Ò°³±Û?POSTS ¿©Çà°´/°¡ÀÌµå ÆÇº°¹øÈ£Discrimination ¾ÆÀÌµð°íÀ¯¹øÈ£(±âº»)UNIQUE
-¿©ÇàÀÚ ±ÛÅ×ÀÌºí
-¿©ÇàÀ§Ä¡ ¿©Çà½Ã°£ ¿©Çà°´/°¡ÀÌµå ÆÇº°¹øÈ£Discrimination  ¾ÆÀÌµð°íÀ¯¹øÈ£(±âº»)UNIQUE
-¸®ºä
-±Û¾´ÀÌ °íÀ¯¹øÈ£UNIQUE º°Á¡ ³»¿ë ´ç»çÀÚ°íÀ¯¹øÈ£TARGETUNIQUE
+ì‚¬ìš©ìž
+ì´ë¦„NAME ì•„ì´ë””ID  ë¹„ë²ˆPASSWORD ë‚˜ì´AGE ì„±ë³„GENDER í•¸ë“œí°ë²ˆí˜¸PHONE ì—¬í–‰ê°/ê°€ì´ë“œ íŒë³„ë²ˆí˜¸Discrimination ì•„ì´ë””ê³ ìœ ë²ˆí˜¸(ê¸°ë³¸)UNIQUE
+ê°€ì´ë“œ
+ì†Œê°œê¸€?POSTS ì—¬í–‰ê°/ê°€ì´ë“œ íŒë³„ë²ˆí˜¸Discrimination ì•„ì´ë””ê³ ìœ ë²ˆí˜¸(ê¸°ë³¸)UNIQUE
+ì—¬í–‰ìž ê¸€í…Œì´ë¸”
+ì—¬í–‰ìœ„ì¹˜ ì—¬í–‰ì‹œê°„ ì—¬í–‰ê°/ê°€ì´ë“œ íŒë³„ë²ˆí˜¸Discrimination  ì•„ì´ë””ê³ ìœ ë²ˆí˜¸(ê¸°ë³¸)UNIQUE
+ë¦¬ë·°
+ê¸€ì“´ì´ ê³ ìœ ë²ˆí˜¸UNIQUE ë³„ì  ë‚´ìš© ë‹¹ì‚¬ìžê³ ìœ ë²ˆí˜¸TARGETUNIQUE
+
