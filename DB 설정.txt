@@ -7,3 +7,4 @@
 리뷰
 글쓴이 고유번호UNIQUE 별점 내용 당사자고유번호TARGETUNIQUE
 
+http://175.213.211.231/myadmin/
