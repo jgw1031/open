@@ -7,60 +7,26 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="65dp"
-        android:layout_marginLeft="65dp"
-        android:text="Login"
-        app:layout_constraintBaseline_toBaselineOf="@+id/log"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:text="Password"
-        app:layout_constraintBaseline_toBaselineOf="@+id/pass"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
         android:id="@+id/GuideMatch"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="149dp"
         android:layout_marginLeft="149dp"
         android:layout_marginBottom="91dp"
-        android:text="GuideMatch"
+        android:text="@string/guidematch"
         app:layout_constraintBottom_toTopOf="@+id/log"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/pass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:inputType="numberPassword"
-        android:text="Password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/log" />
 
     <EditText
         android:id="@+id/log"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginEnd="96dp"
+        android:layout_marginRight="96dp"
         android:autofillHints=""
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Login"
+        android:text="@string/log"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -69,23 +35,38 @@
         android:id="@+id/sup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="65dp"
-        android:layout_marginLeft="65dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
         android:layout_marginEnd="66dp"
         android:layout_marginRight="66dp"
-        android:layout_marginBottom="146dp"
-        android:text="signup"
+        android:layout_marginBottom="140dp"
+        android:text="@string/signup"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/sin"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/sin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
-        android:layout_marginLeft="76dp"
-        android:text="signin"
+        android:layout_marginEnd="23dp"
+        android:layout_marginRight="23dp"
+        android:text="@string/sin"
         app:layout_constraintBaseline_toBaselineOf="@+id/sup"
-        app:layout_constraintStart_toStartOf="@+id/pass" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sup" />
+
+    <EditText
+        android:id="@+id/pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginBottom="56dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/sup"
+        app:layout_constraintEnd_toEndOf="@+id/sin"
+        tools:text="pass" />
 </android.support.constraint.ConstraintLayout>

@@ -6,35 +6,22 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/searchbtn"
+        android:id="@+id/userbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="147dp"
-        android:layout_marginLeft="147dp"
-        android:layout_marginTop="222dp"
-        android:text="@string/searchbtn"
+        android:layout_marginTop="221dp"
+        android:text="@string/userbtn"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/boardbtn"
+        android:id="@+id/post"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="146dp"
-        android:layout_marginLeft="146dp"
-        android:layout_marginBottom="254dp"
-        android:text="@string/boradbtn"
+        android:layout_marginBottom="258dp"
+        android:text="@string/post"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/Guidebtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="91dp"
-        android:text="@string/Guidebtn"
-        app:layout_constraintEnd_toEndOf="@+id/searchbtn"
-        app:layout_constraintStart_toStartOf="@+id/searchbtn"
-        app:layout_constraintTop_toTopOf="parent" />
-
 </android.support.constraint.ConstraintLayout>

@@ -17,6 +17,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".SubActivity"/>
+        <activity android:name=".SignUp"/>
+        <activity android:name=".LocalSearch"/>
+        <activity android:name=".Board"/>
+        <activity android:name=".Guide"/>
     </application>
 
 </manifest>
