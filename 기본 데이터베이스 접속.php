@@ -1,9 +1,9 @@
 ﻿<?php
-    $host = "localhost";      // ȣ��Ʈ �ּ�(localhost, 120.0.0.1)
-    $dbname = "dbroot";      // ����Ÿ ���̽�(DataBase) �̸�
-    $username = "root";          // DB ���̵�
-    $password = "1234";        // DB �н�����
-    $dbChar = "utf-8";            // ���� ���ڵ�
+    $host = "localhost";      //아이피주소
+    $dbname = "dbroot";      //데이터 베이스 이름
+    $username = "root";          // DB 아이디
+    $password = "1234";        // DB 비밀번호
+    $dbChar = "utf-8";            // 언어 설정 
     $options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SETNAMES utf-8');
     try {
         $con = new PDO("mysql:host={$host};dbname={$dbname};setnames=utf-8",$username, $password);
