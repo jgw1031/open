@@ -17,6 +17,8 @@ public class LocalSearch extends AppCompatActivity {
     private Spinner Si;
     private Spinner Attraction;
     private Spinner Sex;
+    private Spinner buteo;
+    private Spinner ggaji;
     ArrayList<String> Do_arrayList;
     ArrayAdapter<String> Do_arrayAdapter;
 
@@ -28,6 +30,13 @@ public class LocalSearch extends AppCompatActivity {
 
     ArrayList<String> Sex_arrayList;
     ArrayAdapter<String> Sex_arrayAdapter;
+
+    ArrayList<String> buteo_arrayList;
+    ArrayAdapter<String> buteo_arrayAdapter;
+
+    ArrayList<String> ggaji_arrayList;
+    ArrayAdapter<String> ggaji_arrayAdapter;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -112,6 +121,49 @@ public class LocalSearch extends AppCompatActivity {
             }
         });
         //-----------------------------------------Attraction_arrayList-----------------------------------------------//
+
+        buteo_arrayList = new ArrayList<>();
+        buteo_arrayList.add("2019.05.22");
+
+        buteo_arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
+                android.R.layout.simple_spinner_dropdown_item,
+                buteo_arrayList);
+
+        buteo = (Spinner)findViewById(R.id.buteo);
+        buteo.setAdapter(buteo_arrayAdapter);
+        buteo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getApplicationContext(),buteo_arrayList.get(i)+"가 선택되었습니다.",
+                        Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+        //-----------------------------------------buteo_arrayList-----------------------------------------------//
+
+        ggaji_arrayList = new ArrayList<>();
+        ggaji_arrayList.add("2019.05.24");
+
+
+        ggaji_arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
+                android.R.layout.simple_spinner_dropdown_item,
+                ggaji_arrayList);
+
+        ggaji = (Spinner)findViewById(R.id.ggaji);
+        ggaji.setAdapter(ggaji_arrayAdapter);
+        ggaji.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getApplicationContext(),ggaji_arrayList.get(i)+"가 선택되었습니다.",
+                        Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+        //-----------------------------------------ggaji_arrayList-----------------------------------------------//
 
         Sex_arrayList = new ArrayList<>();
         Sex_arrayList.add("남");
