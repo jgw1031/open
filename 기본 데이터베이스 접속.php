@@ -7,6 +7,7 @@
     $options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SETNAMES utf-8');
     try {
         $con = new PDO("mysql:host={$host};dbname={$dbname};setnames=utf-8",$username, $password);
+        $con->exec("set names utf8");
     } catch(PDOException $e) {
 
         die("Failed to connect to the database: " . $e->getMessage());
