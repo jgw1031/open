@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors',1);
 include('dbcon.php');
-//POST 값을 읽어온다.
+
 $ID=isset($_POST['ID']) ? $_POST['ID'] : '';
 $PASSWORD = isset($_POST['PASSWORD']) ? $_POST['PASSWORD'] : '';
 $name = isset($_POST['name']) ? $_POST['name'] : '';
@@ -13,7 +13,7 @@ if ($ID != "" ){
     $stmt->execute();
     if ($stmt->rowCount() == 0){
         echo "'";
-        echo $ID,", ",$PASSWORD;
+        echo $ID,;
         echo "'은 찾을 수 없습니다.";
     }
 	else{
@@ -24,9 +24,9 @@ if ($ID != "" ){
                 array('ID'=>$row["ID"],
                 'NAME'=>$row["NAME"],
                 'PASSWORD'=>$row["PASSWORD"],
-	    'GENDER'=>$row["GENDER"],
-	    'PHONE'=>$row["PHONE"],
-	    'AGE'=>$row["AGE"]
+	              'GENDER'=>$row["GENDER"],
+	              'PHONE'=>$row["PHONE"],
+	              'AGE'=>$row["AGE"]
             ));
         }
         if (!$android) {
@@ -43,7 +43,6 @@ if ($ID != "" ){
 else {
     echo "아이디와 비밀번호를 입력하세요  ";
 }
-
 ?>
 <?php
 $android = strpos($_SERVER['HTTP_USER_AGENT'], "Android");
