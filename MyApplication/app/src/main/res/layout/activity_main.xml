@@ -10,9 +10,9 @@
         android:id="@+id/GuideMatch"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginStart="149dp"
-        android:layout_marginLeft="149dp"
-        android:layout_marginBottom="91dp"
+        android:layout_marginStart="176dp"
+        android:layout_marginLeft="176dp"
+        android:layout_marginBottom="96dp"
         android:text="@string/guidematch"
         app:layout_constraintBottom_toTopOf="@+id/log"
         app:layout_constraintStart_toStartOf="parent" />
@@ -26,7 +26,8 @@
         android:autofillHints=""
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/log"
+        android:text=""
+        android:hint="@string/id"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -66,7 +67,8 @@
         android:layout_marginBottom="56dp"
         android:ems="10"
         android:inputType="textPassword"
+        android:hint="@string/password"
         app:layout_constraintBottom_toTopOf="@+id/sup"
         app:layout_constraintEnd_toEndOf="@+id/sin"
-        tools:text="pass" />
+        tools:text="" />
 </android.support.constraint.ConstraintLayout>

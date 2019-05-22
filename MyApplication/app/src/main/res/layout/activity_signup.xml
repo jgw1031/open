@@ -14,7 +14,8 @@
         android:layout_marginRight="96dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/upid"
+        android:text=""
+        android:hint="@string/phonenumber"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,7 +28,8 @@
         android:layout_marginRight="96dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/upid"
+        android:text=""
+        android:hint="@string/age"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,11 +37,11 @@
         android:id="@+id/up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="124dp"
+        android:layout_marginBottom="76dp"
         android:text="@string/up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.547"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -51,12 +53,13 @@
         android:layout_marginRight="96dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/upid"
+        android:text=""
+        android:hint="@string/userid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="252dp"
@@ -64,7 +67,8 @@
         android:layout_marginRight="96dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/upid"
+        android:text=""
+        android:hint="@string/name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -77,12 +81,13 @@
         android:layout_marginRight="96dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/upid"
+        android:text=""
+        android:hint="@string/gender"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/uppass"
+        android:id="@+id/userpass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
@@ -90,9 +95,10 @@
         android:layout_marginRight="96dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:text="@string/uppass"
+        android:text=""
+        android:hint="@string/password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/upid"
-        tools:text="password" />
+        tools:text="" />
 
 </android.support.constraint.ConstraintLayout>

@@ -21,4 +21,13 @@
     <string name="userbtn">사용자로가기</string>
     <string name="post">게시판</string>
     <string name="Do">Do</string>
+    <string name="userid">UserID</string>
+    <string name="userpassword">password</string>
+    <string name="phonenumber">phonenumber</string>
+    <string name="age">age</string>
+    <string name="username">name</string>
+    <string name="gender">gender</string>
+    <string name="userpass">password</string>
+    <string name="uid">ID</string>
+    <string name="upassword">password</string>
 </resources>
