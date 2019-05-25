@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG_JSON="Result";
     private static final String TAG_ID = "ID";
     private static final String TAG_NAME = "NAME";
-    private static final String TAG_PASSWORD = "PASSWORD";
     private static final String TAG_GENDER = "GENDER";
     private static final String TAG_PHONE = "PHONE";
     private static final String TAG_AGE = "AGE";
@@ -151,7 +150,6 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject item = jsonArray.getJSONObject(i);
                 String ID = item.getString(TAG_ID);
                 String NAME = item.getString(TAG_NAME);
-                String PASSWORD= item.getString(TAG_PASSWORD);
                 String GENDER = item.getString(TAG_GENDER);
                 String PHONE =item.getString(TAG_PHONE);
                 String AGE = item.getString(TAG_AGE);
@@ -159,7 +157,6 @@ public class MainActivity extends AppCompatActivity {
                 HashMap<String, String> persons = new HashMap<String, String>();
                 persons.put(TAG_ID, ID);
                 persons.put(TAG_NAME, NAME);
-                persons.put(TAG_PASSWORD, PASSWORD);
                 persons.put(TAG_GENDER, GENDER);
                 persons.put(TAG_PHONE, PHONE);
                 persons.put(TAG_AGE, AGE);
@@ -171,8 +168,8 @@ public class MainActivity extends AppCompatActivity {
         }
         ListAdapter adapter = new SimpleAdapter(
                 MainActivity.this, personList, R.layout.itme_list,
-                new String[]{TAG_ID,TAG_NAME,TAG_PASSWORD,TAG_GENDER,TAG_PHONE,TAG_AGE},
-                new int[]{R.id.id, R.id.NAME,R.id.PASSWORD,R.id.GENDER,R.id.PHONE,R.id.AGE}
+                new String[]{TAG_ID,TAG_NAME,TAG_GENDER,TAG_PHONE,TAG_AGE},
+                new int[]{R.id.id, R.id.NAME,R.id.GENDER,R.id.PHONE,R.id.AGE}
         );
         mListViewList.setAdapter(adapter);
 

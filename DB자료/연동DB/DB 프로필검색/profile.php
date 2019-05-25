@@ -21,7 +21,6 @@ if ($ID != "" ){
             array_push($data,
                 array('ID'=>$row["ID"],
                 'NAME'=>$row["NAME"],
-                'PASSWORD'=>$row["PASSWORD"],
 	               'GENDER'=>$row["GENDER"],
 	                'PHONE'=>$row["PHONE"],
 	                 'AGE'=>$row["AGE"]
