@@ -30,4 +30,12 @@
     <string name="userpass">password</string>
     <string name="uid">ID</string>
     <string name="upassword">password</string>
+    <string name="select1">날짜선택</string>
+    <string name="select2">날짜까지</string>
+    <string name="during">~</string>
+    <string name="textview1">TextView1</string>
+    <string name="textview2">TextView2</string>
+    <string name="time1">time1</string>
+    <string name="time2">TIME2</string>
+
 </resources>

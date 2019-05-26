@@ -31,7 +31,7 @@ public class SubActivity extends Activity implements View.OnClickListener {
         if(R.id.boardbtn == view.getId()){
             Intent intent = new Intent(
                     getApplicationContext(),
-                    Board.class);
+                    pro.class);
             startActivity(intent);
         }
         if(R.id.Guidebtn == view.getId()){

@@ -1,24 +1,34 @@
 package com.tisory.webnautes.helloworld;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.DatePicker;
+import android.widget.TextView;
+import android.widget.TimePicker;
+
 
 import java.util.ArrayList;
 
-public class LocalSearch extends AppCompatActivity {
+public class LocalSearch extends AppCompatActivity implements View.OnClickListener {
     private Spinner Do;
     private Spinner Si;
     private Spinner Attraction;
     private Spinner Sex;
-    private Spinner buteo;
-    private Spinner ggaji;
+    int mYear, mMonth, mDay, mHour, mMinute;
+    TextView textView1;
+    TextView textView2;
+
     ArrayList<String> Do_arrayList;
     ArrayAdapter<String> Do_arrayAdapter;
 
@@ -31,17 +41,38 @@ public class LocalSearch extends AppCompatActivity {
     ArrayList<String> Sex_arrayList;
     ArrayAdapter<String> Sex_arrayAdapter;
 
-    ArrayList<String> buteo_arrayList;
-    ArrayAdapter<String> buteo_arrayAdapter;
 
-    ArrayList<String> ggaji_arrayList;
-    ArrayAdapter<String> ggaji_arrayAdapter;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_localsearch);
+
+        Button select1 = (Button)findViewById(R.id.select1);
+        select1.setOnClickListener(this);
+
+        Button select2 = (Button)findViewById(R.id.select2);
+        select2.setOnClickListener(this);
+
+        Button button3 = (Button)findViewById(R.id.button3);
+        button3.setOnClickListener(this);
+
+        Button button4 = (Button)findViewById(R.id.button4);
+        button4.setOnClickListener(this);
+
+        textView1 = (TextView)findViewById((R.id.textView1));
+        textView2 = (TextView)findViewById((R.id.textView2));
+
+        Calendar cal = new GregorianCalendar();
+        mYear = cal.get(Calendar.YEAR);
+        mMonth = cal.get(Calendar.MONTH);
+        mDay = cal.get(Calendar.DAY_OF_MONTH);
+        mHour = cal.get(Calendar.HOUR_OF_DAY);
+        mMinute = cal.get(Calendar.MINUTE);
+
+        //UpdateNow();
+
         Do_arrayList = new ArrayList<>();
         Do_arrayList.add("충남");
         Do_arrayList.add("서울");
@@ -122,48 +153,9 @@ public class LocalSearch extends AppCompatActivity {
         });
         //-----------------------------------------Attraction_arrayList-----------------------------------------------//
 
-        buteo_arrayList = new ArrayList<>();
-        buteo_arrayList.add("2019.05.22");
-
-        buteo_arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
-                android.R.layout.simple_spinner_dropdown_item,
-                buteo_arrayList);
-
-        buteo = (Spinner)findViewById(R.id.buteo);
-        buteo.setAdapter(buteo_arrayAdapter);
-        buteo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getApplicationContext(),buteo_arrayList.get(i)+"가 선택되었습니다.",
-                        Toast.LENGTH_SHORT).show();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
-        //-----------------------------------------buteo_arrayList-----------------------------------------------//
-
-        ggaji_arrayList = new ArrayList<>();
-        ggaji_arrayList.add("2019.05.24");
 
 
-        ggaji_arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
-                android.R.layout.simple_spinner_dropdown_item,
-                ggaji_arrayList);
 
-        ggaji = (Spinner)findViewById(R.id.ggaji);
-        ggaji.setAdapter(ggaji_arrayAdapter);
-        ggaji.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getApplicationContext(),ggaji_arrayList.get(i)+"가 선택되었습니다.",
-                        Toast.LENGTH_SHORT).show();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
-        //-----------------------------------------ggaji_arrayList-----------------------------------------------//
 
         Sex_arrayList = new ArrayList<>();
         Sex_arrayList.add("남");
@@ -188,4 +180,25 @@ public class LocalSearch extends AppCompatActivity {
         });
         //-----------------------------------------Sex_arrayList-----------------------------------------------//
     }
+
+    @Override
+    public void onClick(View view) {
+        /*
+        if(R.id.select1 == view.getId()){
+            new DatePickerDialog(PickerDialogTest.this, mDateSetListener, mYear, mMonth, mDay).show();
+
+        }
+        if(R.id.button3 == view.getId()){
+            new TimePickerDialog(PickerDialogTest.this, mTimeSetListener, mHour, mMinute, false).show();
+        }
+        if(R.id.select2 == view.getId()){
+            new DatePickerDialog(PickerDialogTest.this, mDateSetListener, mYear, mMonth, mDay).show();
+
+        }
+        if(R.id.button4 == view.getId()){
+            new TimePickerDialog(PickerDialogTest.this, mTimeSetListener, mHour, mMinute, false).show();
+        }
+        */
+    }
+
 }
