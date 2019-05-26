@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/phonenumber"
+        android:id="@+id/editText_main_PHONE"
         android:layout_width="wrap_content"
         android:layout_height="51dp"
         android:layout_marginTop="460dp"
@@ -14,91 +14,89 @@
         android:layout_marginRight="96dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text=""
-        android:hint="@string/phonenumber"
+        android:hint="PHONE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:id="@+id/textView_main_result"
+        tools:ignore="MissingConstraints" />
     <EditText
-        android:id="@+id/age"
+        android:id="@+id/editText_main_AGE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="400dp"
         android:layout_marginEnd="96dp"
         android:layout_marginRight="96dp"
         android:ems="10"
+        android:hint="AGE"
         android:inputType="textPersonName"
-        android:text=""
-        android:hint="@string/age"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/up"
+        android:id="@+id/button_main_insert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="76dp"
-        android:text="@string/up"
+        android:layout_marginBottom="16dp"
+        android:text="UP"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/upid"
+        android:id="@+id/editText_main_ID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="96dp"
         android:layout_marginRight="96dp"
         android:ems="10"
+        android:hint="ID"
         android:inputType="textPersonName"
-        android:text=""
-        android:hint="@string/userid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/editText_main_NAME"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="252dp"
         android:layout_marginEnd="96dp"
         android:layout_marginRight="96dp"
         android:ems="10"
+        android:hint="NAME"
         android:inputType="textPersonName"
-        android:text=""
-        android:hint="@string/name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/gender"
+        android:id="@+id/editText_main_GENDER"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="324dp"
         android:layout_marginEnd="96dp"
         android:layout_marginRight="96dp"
         android:ems="10"
+        android:hint="GENDER"
         android:inputType="textPersonName"
-        android:text=""
-        android:hint="@string/gender"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/userpass"
+        android:id="@+id/editText_main_PASSWORD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="96dp"
         android:layout_marginRight="96dp"
         android:ems="10"
+        android:hint="PASSWORD"
         android:inputType="textPassword"
-        android:text=""
-        android:hint="@string/password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/upid"
+        app:layout_constraintTop_toBottomOf="@+id/editText_main_ID"
         tools:text="" />
 
 </android.support.constraint.ConstraintLayout>
