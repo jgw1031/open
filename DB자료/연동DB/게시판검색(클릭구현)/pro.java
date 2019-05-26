@@ -1,17 +1,26 @@
 package com.example.msi.myapplication;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Adapter.*;
+import android.widget.Toast;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,7 +34,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class MainActivity extends AppCompatActivity {
+public class pro extends AppCompatActivity {
     private static String TAG = "phpquerytest";
     private static final String TAG_JSON="Result";
     private static final String TAG_ID = "ID";
@@ -56,9 +65,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         personList = new ArrayList<HashMap<String, String>>();
+        mListViewList.setOnItemClickListener(itemClickListenerOfLanguageList);
     }
+    private OnItemClickListener itemClickListenerOfLanguageList = new OnItemClickListener()
+    {
+
+        public void onItemClick(AdapterView<?> adapterView,View view, int pos, long id)
+        {
+            mListViewList = (ListView) findViewById(R.id.listView_main_list);
+            int check_position = mListViewList.getCheckedItemPosition();   //리스트뷰의 포지션을 가져옴.
+            Object vo = (Object)adapterView.getAdapter().getItem(pos);  //리스트뷰의 포지션 내용을 가져옴.
 
 
+            System.out.println(vo);
+            Intent intent=new Intent(getApplicationContext(),therdlay.class);
+            intent.putExtra("text",vo.toString());
+            System.out.println(vo);
+            startActivity(intent);
+            //vo 를 변수삼아 게시판창띄우면됨
+        }
+    };
     private class GetData extends AsyncTask<String, Void, String>{
 
         ProgressDialog progressDialog;
@@ -67,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressDialog = ProgressDialog.show(MainActivity.this,
+            progressDialog = ProgressDialog.show(pro.this,
                     "Please Wait", null, true, true);
         }
         @Override
@@ -173,12 +199,11 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "showResult : ", e);
         }
         ListAdapter adapter = new SimpleAdapter(
-                MainActivity.this, personList, R.layout.itme_list,
+                pro.this, personList, R.layout.itme_list,
                 new String[]{TAG_ID,TAG_NO,TAG_AREA,TAG_GENDER,TAG_TITLE,TAG_CONTENTS},
                 new int[]{R.id.id, R.id.NO,R.id.AREA,R.id.GENDER,R.id.TITLE,R.id.CONTENTS}
         );
         mListViewList.setAdapter(adapter);
 
     }
-
 }
