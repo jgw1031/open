@@ -40,6 +40,7 @@ public class SubActivity extends Activity implements View.OnClickListener {
                     Guide.class);
 
             startActivity(intent);
+            finish();
         }
     }
 }

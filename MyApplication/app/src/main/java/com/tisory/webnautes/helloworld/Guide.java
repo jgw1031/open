@@ -32,6 +32,7 @@ public class Guide extends Activity implements View.OnClickListener {
                     getApplicationContext(),
                     SubActivity.class);
             startActivity(intent);
+            finish();
         }
     }
 }

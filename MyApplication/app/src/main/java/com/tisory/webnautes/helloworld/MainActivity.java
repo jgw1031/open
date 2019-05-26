@@ -10,7 +10,8 @@ import android.widget.EditText;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
-
+    private EditText idtext;
+    private EditText passtext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,20 +20,30 @@ public class MainActivity extends Activity implements View.OnClickListener {
         bin.setOnClickListener(this);
         Button bup = (Button)findViewById(R.id.sup);
         bup.setOnClickListener(this);
-
+        idtext = (EditText)findViewById(R.id.log);
+        passtext = (EditText)findViewById(R.id.pass);
 
     }
 
 
     @Override
     public void onClick(View view) {
-
+        String id = idtext.getText().toString();
+        String password = passtext.getText().toString();
         if(R.id.sin == view.getId()){
-            Intent intent = new Intent(
-                    getApplicationContext(),
-                    SubActivity.class
-            );
-            startActivity(intent);
+            if(id.equals("id") && password.equals("1234")){
+                Intent intent = new Intent(
+                        getApplicationContext(),
+                        SubActivity.class
+                );
+                intent.putExtra("id",id);
+                intent.putExtra("pass",password);
+                startActivity(intent);
+                setResult(RESULT_OK,intent);
+                finish();
+            }
+
+
         }
         if(R.id.sup == view.getId()) {
             Intent intent = new Intent(

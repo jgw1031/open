@@ -79,6 +79,7 @@ public class SignUp extends AppCompatActivity {
                                 MainActivity.class
                         );
                         startActivity(intent);
+                        finish();
                     }
                 }
             });
