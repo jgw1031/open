@@ -11,16 +11,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/Attraction"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.922" />
+        app:layout_constraintVertical_bias="0.817" />
 
     <Spinner
         android:id="@+id/Si"
@@ -28,13 +27,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="27dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
 
+        android:layout_marginRight="8dp"
         app:layout_constraintBottom_toTopOf="@+id/Attraction"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Do" />
 
     <Spinner
         android:id="@+id/Attraction"
@@ -44,24 +45,12 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="268dp"
+        android:layout_marginBottom="344dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Spinner
-        android:id="@+id/Sex"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="83dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Si" />
 
     <Button
         android:id="@+id/searchgo"
@@ -79,37 +68,27 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginBottom="76dp"
+        android:layout_marginTop="40dp"
         android:text="@string/select1"
-        app:layout_constraintBottom_toTopOf="@+id/Sex"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Attraction" />
 
     <Button
         android:id="@+id/select2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginBottom="76dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="8dp"
         android:text="@string/select2"
-        app:layout_constraintBottom_toTopOf="@+id/Sex"
-        app:layout_constraintStart_toEndOf="@+id/textView" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="27dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="104dp"
-        android:layout_marginLeft="104dp"
-        android:text="@string/during"
-        app:layout_constraintBaseline_toBaselineOf="@+id/select1"
-        app:layout_constraintStart_toEndOf="@+id/select1" />
+        app:layout_constraintStart_toEndOf="@+id/button3"
+        app:layout_constraintTop_toTopOf="@+id/button3" />
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="79dp"
         android:layout_height="0dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="52dp"
         app:layout_constraintStart_toStartOf="@+id/select1"
         app:layout_constraintTop_toBottomOf="@+id/select1" />
 
@@ -117,9 +96,9 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
         android:text="@string/textview2"
         app:layout_constraintEnd_toEndOf="@+id/select2"
         app:layout_constraintTop_toBottomOf="@+id/select2" />
@@ -128,28 +107,25 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
         android:text="@string/time1"
         app:layout_constraintBaseline_toBaselineOf="@+id/select1"
-        app:layout_constraintEnd_toStartOf="@+id/textView" />
+        app:layout_constraintEnd_toEndOf="@+id/time1" />
 
     <TextView
         android:id="@+id/time1"
         android:layout_width="69dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView1"
         app:layout_constraintStart_toEndOf="@+id/textView1" />
 
     <TextView
         android:id="@+id/time2"
         android:layout_width="67dp"
-        android:layout_height="15dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         app:layout_constraintStart_toStartOf="@+id/button4"
         app:layout_constraintTop_toTopOf="@+id/textView2" />
 
@@ -157,10 +133,34 @@
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginLeft="7dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
         android:text="@string/time2"
         app:layout_constraintBaseline_toBaselineOf="@+id/select2"
         app:layout_constraintStart_toEndOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/searchid"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:hint="ID를 입력하세요"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/searchgo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/searchgender"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:hint="성별을 입력하세요"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/searchid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
