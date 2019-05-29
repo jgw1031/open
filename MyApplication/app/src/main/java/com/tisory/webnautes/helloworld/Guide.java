@@ -33,6 +33,7 @@ public class Guide extends Activity implements View.OnClickListener {
                     getApplicationContext(),
                     SubActivity.class);
             startActivity(intent);
+            finish();
         }
     }
     private long lastTimeBackPressed; //뒤로가기 버튼이 클릭된 시간
@@ -43,6 +44,8 @@ public class Guide extends Activity implements View.OnClickListener {
         if (System.currentTimeMillis() - lastTimeBackPressed < 2000)
         {
             finish();
+            System.runFinalization();
+            System.exit(0);
             return;
         }
         //'뒤로' 버튼 한번 클릭 시 메시지

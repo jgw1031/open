@@ -32,8 +32,8 @@ public class SubActivity extends Activity implements View.OnClickListener {
             Intent intent = new Intent(
                     getApplicationContext(),
                     Guide.class);
-
             startActivity(intent);
+            finish();
         }
     }
 
@@ -45,6 +45,8 @@ public class SubActivity extends Activity implements View.OnClickListener {
         if (System.currentTimeMillis() - lastTimeBackPressed < 2000)
         {
             finish();
+            System.runFinalization();
+            System.exit(0);
             return;
         }
         //'뒤로' 버튼 한번 클릭 시 메시지

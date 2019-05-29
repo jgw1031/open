@@ -73,14 +73,9 @@ public class pro extends AppCompatActivity {
         public void onItemClick(AdapterView<?> adapterView,View view, int pos, long id)
         {
             mListViewList = (ListView) findViewById(R.id.listView_main_list);
-            int check_position = mListViewList.getCheckedItemPosition();   //리스트뷰의 포지션을 가져옴.
             Object vo = (Object)adapterView.getAdapter().getItem(pos);  //리스트뷰의 포지션 내용을 가져옴.
-
-
-            System.out.println(vo);
             Intent intent=new Intent(getApplicationContext(),therdlay.class);
             intent.putExtra("text",vo.toString());
-            System.out.println(vo);
             startActivity(intent);
             //vo 를 변수삼아 게시판창띄우면됨
         }
