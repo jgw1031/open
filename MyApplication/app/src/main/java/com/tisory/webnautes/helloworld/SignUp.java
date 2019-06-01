@@ -39,7 +39,6 @@ public class SignUp extends AppCompatActivity {
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_signup);
-
             mEditTextID = (EditText)findViewById(R.id.editText_main_ID);
             mEditTextNAME = (EditText)findViewById(R.id.editText_main_NAME);
             mEditTextPASSWORD = (EditText)findViewById(R.id.editText_main_PASSWORD);
@@ -47,26 +46,19 @@ public class SignUp extends AppCompatActivity {
             mEditTextPHONE = (EditText)findViewById(R.id.editText_main_PHONE);
             mEditTextGENDER = (EditText)findViewById(R.id.editText_main_GENDER);
             mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
-
             mTextViewResult.setMovementMethod(new ScrollingMovementMethod());
-
-
             Button buttonInsert = (Button)findViewById(R.id.button_main_insert);
             buttonInsert.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     String ID = mEditTextID.getText().toString();
                     String NAME = mEditTextNAME.getText().toString();
                     String PASSWORD = mEditTextPASSWORD.getText().toString();
                     String AGE = mEditTextAGE.getText().toString();
                     String PHONE = mEditTextPHONE.getText().toString();
                     String GENDER = mEditTextGENDER.getText().toString();
-
                     InsertData task = new InsertData();
                     task.execute("http://" + IP_ADDRESS + "/insert1.php", ID,NAME,PASSWORD,AGE,PHONE,GENDER);
-
-
                     mEditTextID.setText("");
                     mEditTextNAME.setText("");
                     mEditTextPASSWORD.setText("");
@@ -85,25 +77,17 @@ public class SignUp extends AppCompatActivity {
             });
 
         }
-
-
-
 class InsertData extends AsyncTask<String, Void, String>{
     ProgressDialog progressDialog;
-
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-
         progressDialog = ProgressDialog.show(SignUp.this,
                 "Please Wait", null, true, true);
     }
-
-
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-
         progressDialog.dismiss();
         mTextViewResult.setText(result);
         Log.d(TAG, "POST response  - " + result);

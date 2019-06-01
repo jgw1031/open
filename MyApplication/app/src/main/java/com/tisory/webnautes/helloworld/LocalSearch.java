@@ -2,7 +2,6 @@ package com.tisory.webnautes.helloworld;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -18,15 +17,13 @@ import android.widget.Toast;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
-
-
 import java.util.ArrayList;
 
 public class LocalSearch extends AppCompatActivity implements View.OnClickListener {
     private Spinner Do;
     private Spinner Si;
     private Spinner Attraction;
-
+    private String DataM1,DataM2,TimeM1,TimeM2;
     int mYear, mMonth, mDay, mHour, mMinute;
     TextView textView1;
     TextView textView2;
@@ -34,54 +31,39 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
     TextView time2;
     //TextView searchgender;
     //TextView searchid;
-
     ArrayList<String> Do_arrayList;
     ArrayAdapter<String> Do_arrayAdapter;
-
     ArrayList<String> Si_arrayList;
     ArrayAdapter<String> Si_arrayAdapter;
-
     ArrayList<String> Attraction_arrayList;
     ArrayAdapter<String> Attraction_arrayAdapter;
-
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_localsearch);
-
         Button select1 = (Button)findViewById(R.id.select1);
         select1.setOnClickListener(this);
-
         Button select2 = (Button)findViewById(R.id.select2);
         select2.setOnClickListener(this);
-
         Button button3 = (Button)findViewById(R.id.button3);
         button3.setOnClickListener(this);
-
         Button button4 = (Button)findViewById(R.id.button4);
         button4.setOnClickListener(this);
-
         Button searchgo = (Button)findViewById(R.id.searchgo);
         searchgo.setOnClickListener(this);
-
         textView1 = (TextView)findViewById((R.id.textView1));
         textView2 = (TextView)findViewById((R.id.textView2));
         time1 = (TextView)findViewById(R.id.time1);
         time2 = (TextView)findViewById(R.id.time2);
         //searchgender = (TextView)findViewById(R.id.searchgender);
         //searchid = (TextView)findViewById(R.id.searchid);
-
         Calendar cal = new GregorianCalendar();
         mYear = cal.get(Calendar.YEAR);
         mMonth = cal.get(Calendar.MONTH);
         mDay = cal.get(Calendar.DAY_OF_MONTH);
         mHour = cal.get(Calendar.HOUR_OF_DAY);
         mMinute = cal.get(Calendar.MINUTE);
-
         UpdateNow();
-
         Do_arrayList = new ArrayList<>();
         Do_arrayList.add("충남");
         Do_arrayList.add("서울");
@@ -90,11 +72,9 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
         Do_arrayList.add("부산");
         Do_arrayList.add("충북");
         Do_arrayList.add("경기도");
-
         Do_arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
                 android.R.layout.simple_spinner_dropdown_item,
                 Do_arrayList);
-
         Do = (Spinner)findViewById(R.id.Do);
         Do.setAdapter(Do_arrayAdapter);
         Do.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -108,8 +88,6 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
             }
         });
         //-----------------------------------------Do_arrayList-----------------------------------------------//
-
-
         Si_arrayList = new ArrayList<>();
         Si_arrayList.add("천안");
         Si_arrayList.add("아산");
@@ -118,11 +96,9 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
         Si_arrayList.add("계룡");
         Si_arrayList.add("논산");
         Si_arrayList.add("파주");
-
         Si_arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
                 android.R.layout.simple_spinner_dropdown_item,
                 Si_arrayList);
-
         Si = (Spinner)findViewById(R.id.Si);
         Si.setAdapter(Si_arrayAdapter);
         Si.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -136,18 +112,14 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
             }
         });
         //-----------------------------------------Si_arrayList-----------------------------------------------//
-
         Attraction_arrayList = new ArrayList<>();
         Attraction_arrayList.add("독립기념관");
         Attraction_arrayList.add("계룡산");
         Attraction_arrayList.add("현충사");
         Attraction_arrayList.add("신정호 호수공원");
-
-
         Attraction_arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
                 android.R.layout.simple_spinner_dropdown_item,
                 Attraction_arrayList);
-
         Attraction = (Spinner)findViewById(R.id.Attraction);
         Attraction.setAdapter(Attraction_arrayAdapter);
         Attraction.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -161,40 +133,36 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
             }
         });
         //-----------------------------------------Attraction_arrayList-----------------------------------------------//
-
-
-
-
-
-
     }
-
     @Override
     public void onClick(View view) {
-
         if(R.id.select1 == view.getId()){
             new DatePickerDialog(LocalSearch.this, mDateSetListener, mYear, mMonth, mDay).show();
-
         }
         if(R.id.button3 == view.getId()){
             new TimePickerDialog(LocalSearch.this, mTimeSetListener, mHour, mMinute, false).show();
         }
         if(R.id.select2 == view.getId()){
             new DatePickerDialog(LocalSearch.this, mDateSetListener, mYear, mMonth, mDay).show();
-
         }
         if(R.id.button4 == view.getId()){
             new TimePickerDialog(LocalSearch.this, mTimeSetListener, mHour, mMinute, false).show();
         }
-
         if(R.id.searchgo == view.getId()) {        //검색버튼을 눌렀을 때
-            Intent intent = new Intent(
-                    getApplicationContext(),
-                    pro.class
-            );
+            Intent intent = new Intent(getApplicationContext(),pro.class);
+            String AREA =(Do.getItemAtPosition(1).toString()+ Si.getItemAtPosition(1).toString()+Attraction.getItemAtPosition(1).toString());
+            String Data1=(DataM1);
+            String Time1=(TimeM1);
+            String Data2=(DataM2);
+            String Time2=(TimeM2);
+            System.out.println(DataM1+ "/"+  TimeM1+"/"+  DataM2 +"/"+ TimeM2);
+            intent.putExtra("time1",Time1);
+            intent.putExtra("time2",Time2);
+            intent.putExtra("data1",Data1);
+            intent.putExtra("data2",Data2);
+            intent.putExtra("area",AREA);
             startActivity(intent);
         }
-
     }
     DatePickerDialog.OnDateSetListener mDateSetListener =
             new DatePickerDialog.OnDateSetListener() {
@@ -218,10 +186,14 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
                 }
             };
     void UpdateNow() {
+        DataM1 = String.format("%d/%d/%d", mYear,mMonth + 1, mDay);
+        DataM2 = String.format("%d/%d/%d", mYear,mMonth + 1, mDay);
+        TimeM1 = String.format("%d:%d", mHour, mMinute);
+        TimeM2 = String.format("%d:%d", mHour, mMinute);
+
         textView1.setText(String.format("%d/%d/%d", mYear,mMonth + 1, mDay));
         textView2.setText(String.format("%d/%d/%d", mYear,mMonth + 1, mDay));
         time1.setText(String.format("%d:%d", mHour, mMinute));
         time2.setText(String.format("%d:%d", mHour, mMinute));
     }
-
 }

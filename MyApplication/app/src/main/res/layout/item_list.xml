@@ -41,6 +41,12 @@
         android:paddingBottom="1dip"
         android:textStyle="bold" />
     <TextView
+        android:id="@+id/TIME"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="1dip"
+        android:textStyle="bold" />
+    <TextView
         android:id="@+id/GENDER"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
