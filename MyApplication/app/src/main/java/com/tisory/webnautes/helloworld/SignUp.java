@@ -1,9 +1,12 @@
 package com.tisory.webnautes.helloworld;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.Button;
 
 import android.app.ProgressDialog;
@@ -66,12 +69,21 @@ public class SignUp extends AppCompatActivity {
                     mEditTextPHONE.setText("");
                     mEditTextGENDER.setText("");
                     if(R.id.button_main_insert == v.getId()){
-                        Intent intent = new Intent(
-                                getApplicationContext(),
-                                MainActivity.class
-                        );
-                        startActivity(intent);
-                        finish();
+                        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(SignUp.this);
+                        alertDialogBuilder.setTitle("회원가입 성공");
+                        alertDialogBuilder.setMessage("회원가입이 되었습니다.");
+                        alertDialogBuilder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Intent intent = new Intent(
+                                        getApplicationContext(),
+                                        MainActivity.class
+                                );
+                                startActivity(intent);
+                                finish();
+                            }
+                        });
+
                     }
                 }
             });

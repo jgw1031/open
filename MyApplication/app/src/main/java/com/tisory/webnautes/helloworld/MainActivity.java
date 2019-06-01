@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -131,6 +132,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     SignUp.class
             );
             startActivity(intent);
+        }
+        else { // 로그인 실패
+            Toast.makeText(this, "아이디와 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
         }
     }
 
