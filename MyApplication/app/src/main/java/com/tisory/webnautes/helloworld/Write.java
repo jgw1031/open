@@ -34,14 +34,15 @@ public class Write extends AppCompatActivity implements View.OnClickListener {
                 }
 
             });
-            alertDialogBuilder.setPositiveButton("취소", new DialogInterface.OnClickListener() {
+            alertDialogBuilder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     Intent cancle = new Intent(getApplicationContext(), pro.class);
                     startActivity(cancle);
-                    finish();
+                    dialogInterface.cancel();
                 }
             });
+            alertDialogBuilder.show();
         }
         else if(R.id.button3 == v.getId()) {
             final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Write.this);
@@ -56,7 +57,7 @@ public class Write extends AppCompatActivity implements View.OnClickListener {
                 }
 
             });
-
+            alertDialogBuilder.show();
         }
     }
 }

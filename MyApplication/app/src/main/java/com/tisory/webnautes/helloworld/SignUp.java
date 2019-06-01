@@ -83,7 +83,7 @@ public class SignUp extends AppCompatActivity {
                                 finish();
                             }
                         });
-
+                        alertDialogBuilder.show();
                     }
                 }
             });

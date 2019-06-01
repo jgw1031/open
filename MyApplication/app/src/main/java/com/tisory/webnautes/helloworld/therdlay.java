@@ -68,15 +68,16 @@ public class therdlay extends AppCompatActivity implements View.OnClickListener 
                 }
 
             });
-            alertDialogBuilder.setPositiveButton("취소", new DialogInterface.OnClickListener() {
+            alertDialogBuilder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     Intent cancle = new Intent(getApplicationContext(), pro.class);
                     startActivity(cancle);
-                    finish();
+                    dialogInterface.cancel();
                 }
 
             });
+            alertDialogBuilder.show();
         }
         if(R.id.button8 == v.getId()) { //프로필보기
             Intent cancle = new Intent(getApplicationContext(), pro.class);
