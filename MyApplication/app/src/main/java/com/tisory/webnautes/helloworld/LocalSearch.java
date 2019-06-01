@@ -25,6 +25,7 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
     private Spinner Attraction;
     private String DataM1,DataM2,TimeM1,TimeM2;
     int mYear, mMonth, mDay, mHour, mMinute;
+    int mYearm, mMonthm, mDaym, mHourm, mMinutem;
     TextView textView1;
     TextView textView2;
     TextView time1;
@@ -63,6 +64,11 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
         mDay = cal.get(Calendar.DAY_OF_MONTH);
         mHour = cal.get(Calendar.HOUR_OF_DAY);
         mMinute = cal.get(Calendar.MINUTE);
+        mYearm = cal.get(Calendar.YEAR);
+        mMonthm = cal.get(Calendar.MONTH);
+        mDaym = cal.get(Calendar.DAY_OF_MONTH);
+        mHourm = cal.get(Calendar.HOUR_OF_DAY);
+        mMinutem = cal.get(Calendar.MINUTE);
         UpdateNow();
         Do_arrayList = new ArrayList<>();
         Do_arrayList.add("충남");
@@ -143,10 +149,10 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
             new TimePickerDialog(LocalSearch.this, mTimeSetListener, mHour, mMinute, false).show();
         }
         if(R.id.select2 == view.getId()){
-            new DatePickerDialog(LocalSearch.this, mDateSetListener, mYear, mMonth, mDay).show();
+            new DatePickerDialog(LocalSearch.this, mDateSetListenerm, mYearm, mMonthm, mDaym).show();
         }
         if(R.id.button4 == view.getId()){
-            new TimePickerDialog(LocalSearch.this, mTimeSetListener, mHour, mMinute, false).show();
+            new TimePickerDialog(LocalSearch.this, mTimeSetListenerm, mHourm, mMinutem, false).show();
         }
         if(R.id.searchgo == view.getId()) {        //검색버튼을 눌렀을 때
             Intent intent = new Intent(getApplicationContext(),pro.class);
@@ -175,6 +181,17 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
                     UpdateNow();
                 }
             };
+    DatePickerDialog.OnDateSetListener mDateSetListenerm =
+            new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                    //사용자가 입력한 값을 가져온 뒤
+                    mYearm = year;
+                    mMonthm = monthOfYear;
+                    mDaym = dayOfMonth;
+                    UpdateNow();
+                }
+            };
     TimePickerDialog.OnTimeSetListener mTimeSetListener =
             new TimePickerDialog.OnTimeSetListener() {
                 @Override
@@ -185,15 +202,25 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
                     UpdateNow();
                 }
             };
+    TimePickerDialog.OnTimeSetListener mTimeSetListenerm =
+            new TimePickerDialog.OnTimeSetListener() {
+                @Override
+                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                    //사용자가 입력한 값을 가져온뒤
+                    mHourm = hourOfDay;
+                    mMinutem = minute;
+                    UpdateNow();
+                }
+            };
     void UpdateNow() {
         DataM1 = String.format("%d/%d/%d", mYear,mMonth + 1, mDay);
-        DataM2 = String.format("%d/%d/%d", mYear,mMonth + 1, mDay);
+        DataM2 = String.format("%d/%d/%d", mYearm,mMonthm + 1, mDaym);
         TimeM1 = String.format("%d:%d", mHour, mMinute);
-        TimeM2 = String.format("%d:%d", mHour, mMinute);
+        TimeM2 = String.format("%d:%d", mHourm, mMinutem);
 
         textView1.setText(String.format("%d/%d/%d", mYear,mMonth + 1, mDay));
-        textView2.setText(String.format("%d/%d/%d", mYear,mMonth + 1, mDay));
+        textView2.setText(String.format("%d/%d/%d", mYearm,mMonthm + 1, mDaym));
         time1.setText(String.format("%d:%d", mHour, mMinute));
-        time2.setText(String.format("%d:%d", mHour, mMinute));
+        time2.setText(String.format("%d:%d", mHourm, mMinutem));
     }
 }
