@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".profile">
+
+    <LinearLayout
+        android:layout_width="214dp"
+        android:layout_height="92dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="2dp">
+
+
+        <Button
+            android:id="@+id/button_main_search"
+            android:layout_width="288dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:text="Search" />
+    </LinearLayout>
+
+    <ListView
+    android:id="@+id/listView_profile"
+    android:layout_width="408dp"
+    android:layout_height="125dp"
+    android:layout_weight="0.4"
+    tools:ignore="MissingConstraints"
+    tools:layout_editor_absoluteX="-2dp"
+    tools:layout_editor_absoluteY="0dp" />
+
+    <ListView
+        android:id="@+id/listView_review"
+        android:layout_width="405dp"
+        android:layout_height="508dp"
+        android:layout_weight="0.4"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-1dp"
+        tools:layout_editor_absoluteY="125dp" />
+
+    <TextView
+        android:id="@+id/textView_main_result"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        tools:ignore="MissingConstraints" />
+</android.support.constraint.ConstraintLayout>
