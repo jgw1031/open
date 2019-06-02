@@ -23,30 +23,30 @@
             android:layout_width="288dp"
             android:layout_height="match_parent"
             android:layout_weight="0.3"
-            android:text="Search" />
+            android:text="리뷰 작성 " />
     </LinearLayout>
 
-    <ListView
-    android:id="@+id/listView_profile"
-    android:layout_width="408dp"
-    android:layout_height="125dp"
-    android:layout_weight="0.4"
-    tools:ignore="MissingConstraints"
-    tools:layout_editor_absoluteX="-2dp"
-    tools:layout_editor_absoluteY="0dp" />
+    <TextView
+        android:id="@+id/profile"
+        android:layout_width="411dp"
+        android:layout_height="127dp"
+        tools:ignore="MissingConstraints" />
 
     <ListView
         android:id="@+id/listView_review"
-        android:layout_width="405dp"
-        android:layout_height="508dp"
-        android:layout_weight="0.4"
+        android:layout_width="409dp"
+        android:layout_height="376dp"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-1dp"
-        tools:layout_editor_absoluteY="125dp" />
+        tools:layout_editor_absoluteX="0dp" />
+
 
     <TextView
         android:id="@+id/textView_main_result"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="477dp"
+        tools:layout_editor_absoluteY="286dp" />
 </android.support.constraint.ConstraintLayout>

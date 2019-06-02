@@ -25,7 +25,7 @@ public class Guide extends Activity implements View.OnClickListener {
         if(R.id.post == view.getId()){
             Intent intent = new Intent(
                     getApplicationContext(),
-                    pro.class);
+                    Search.class);
             startActivity(intent);
         }
         if(R.id.userbtn == view.getId()){

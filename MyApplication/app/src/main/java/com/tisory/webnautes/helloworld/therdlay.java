@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 public class therdlay extends AppCompatActivity implements View.OnClickListener {
 
+    private String ID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,10 +20,9 @@ public class therdlay extends AppCompatActivity implements View.OnClickListener 
         Intent intent=getIntent();
         String s=intent.getStringExtra("text");
         TextView textView=(TextView)findViewById(R.id.textView6);
+        TextView TITLEView=(TextView)findViewById(R.id.textView5);
         textView.setText(s);
-        String str = "NO=2,AREA=area,GENDER=gender,TITLE=title,ID=id,CONTENTS=contents";
-
-        String[] arr = str.split("=");
+        String[] arr = s.split(":");
         String s1 ="";
         String s2 ="";
         for(int i=0; i<arr.length; i++) {
@@ -31,20 +32,22 @@ public class therdlay extends AppCompatActivity implements View.OnClickListener 
         for(int i=0; i<arr2.length; i++) {
             s2 = s2+arr2[i];
         }
-        int indexNO = s2.indexOf("NO");
-        int indexAREA = s2.indexOf("AREA");
-        int indexGENDER = s2.indexOf("GENDER");
-        int indexTITLE = s2.indexOf("TITLE");
-        int indexID = s2.indexOf("ID");
-        int indexCONTENTS = s2.indexOf("CONTENTS");
-        String NO = s2.substring(indexNO+2, indexAREA);     //NO값
-        String AREA = s2.substring(indexAREA+4, indexGENDER);   //AREA값
-        String GENDER = s2.substring(indexGENDER+6, indexTITLE);    //GENDER값
-        String TITLE = s2.substring(indexTITLE+5, indexID); //TITLE값
-        String ID = s2.substring(indexID+2, indexCONTENTS); //ID값
-        String CONTENT = s2.substring(indexCONTENTS+8); //CONTENT값
-
-
+        int indexNO = s.indexOf("NO");
+        int indexAREA = s.indexOf("AREA");
+        int indexGENDER = s.indexOf("GENDER");
+        int indexTITLE = s.indexOf("TITLE");
+        int indexID = s.indexOf("ID");
+        int indexCONTENTS = s.indexOf("CONTENTS");
+        int indexTIME=s.indexOf("TIMES");
+        String TITLE = s.substring(indexTITLE+6, indexCONTENTS-2); //TITLE값
+        String CONTENT = s.substring(indexCONTENTS+9,indexTIME-2); //CONTENT값
+        String TIME = s.substring(indexTIME+6,indexID-2);
+        ID = s.substring(indexID+3, indexNO-2); //ID값
+        String NO = s.substring(indexNO+3, indexGENDER-2);     //NO값
+        String GENDER = s.substring(indexGENDER+7, indexAREA-2);    //GENDER값
+        String AREA = s.substring(indexAREA+5, s.indexOf("}"));   //AREA값
+        TITLEView.setText(NO+" "+TITLE);
+        textView.setText(AREA+"\n"+GENDER+"\n"+CONTENT);
         Button button5 = (Button)findViewById(R.id.button5);
         button5.setOnClickListener(this);
         Button button9 = (Button)findViewById(R.id.button9);
@@ -52,7 +55,6 @@ public class therdlay extends AppCompatActivity implements View.OnClickListener 
         Button button8 = (Button)findViewById(R.id.button8);
         button8.setOnClickListener(this);
     }
-
     public void onClick(View v)
     {
         if(R.id.button5 == v.getId()) { //삭제
@@ -80,13 +82,14 @@ public class therdlay extends AppCompatActivity implements View.OnClickListener 
             alertDialogBuilder.show();
         }
         if(R.id.button8 == v.getId()) { //프로필보기
-            Intent cancle = new Intent(getApplicationContext(), pro.class);
+
+            System.out.println(ID);
+            Intent cancle = new Intent(getApplicationContext(), profile.class);
+            cancle.putExtra("ID",ID);
             startActivity(cancle);
             finish();
         }
         if(R.id.button9 == v.getId()) {    //뒤로가기
-            Intent cancle = new Intent(getApplicationContext(), pro.class);
-            startActivity(cancle);
             finish();
         }
     }

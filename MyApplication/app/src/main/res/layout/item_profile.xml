@@ -3,6 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:layout_marginTop="150dp"
     android:padding="7dp"
     android:paddingLeft="7dp"
     android:paddingRight="7dp">
@@ -46,24 +47,6 @@
         android:layout_height="wrap_content"
         android:paddingBottom="1dip"
         android:textStyle="bold" />
-    <TextView
-        android:id="@+id/STAR"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="1dip"
-        android:textStyle="bold" />
-    <TextView
-        android:id="@+id/WRITER"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="1dip"
-        android:textStyle="bold" />
-    <TextView
-        android:id="@+id/TEXT"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="4dip"
-        android:textStyle="bold" />
-
-
 </LinearLayout>
+
+

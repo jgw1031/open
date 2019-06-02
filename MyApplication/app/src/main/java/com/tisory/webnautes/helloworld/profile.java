@@ -36,7 +36,7 @@ public class profile extends AppCompatActivity {
     private static final String TAG_PHONE = "PHONE";
     private static final String TAG_AGE = "AGE";
     private static final String TAG_country = "country";
-    private static final String TAG_WRITER = "WRITER";
+    private static final String TAG_WRITER = "ID2";
     private static final String TAG_TEXT = "TEXT";
     private static final String TAG_STAR = "STAR";
     private TextView mTextViewResult;
@@ -50,12 +50,10 @@ public class profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
-        mListViewList = (ListView) findViewById(R.id.listView_profile);
         mListViewList2 = (ListView) findViewById(R.id.listView_review);
         Button button_search = (Button) findViewById(R.id.button_main_search);
         Intent intent=getIntent();
         String ID=intent.getStringExtra("ID");
-        personList.clear();
         GetData task = new GetData();
         task.execute(ID);
         personList = new ArrayList<HashMap<String, String>>();
@@ -148,37 +146,35 @@ public class profile extends AppCompatActivity {
             System.out.println("JSON String 생성");
             JSONObject jsonObject = new JSONObject(mJsonString.substring(mJsonString.indexOf("{"), mJsonString.lastIndexOf("}") + 1));
             JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
-            System.out.println("1");
-            for(int i=0;i<jsonArray.length();i++){
+            for(int i=0;i<jsonArray.length();i++) {
+                System.out.println(jsonArray);
                 JSONObject item = jsonArray.getJSONObject(i);
                 String ID = item.getString(TAG_ID);
                 String NAME = item.getString(TAG_NAME);
                 String GENDER = item.getString(TAG_GENDER);
-                String PHONE =item.getString(TAG_PHONE);
+                String PHONE = item.getString(TAG_PHONE);
                 String AGE = item.getString(TAG_AGE);
+                String STAR = item.getString(TAG_STAR);
+                String WRITER = item.getString(TAG_WRITER);
+                String TEXT = item.getString(TAG_TEXT);
+                System.out.println(ID+NAME+GENDER+PHONE+AGE);
+                TextView textView=(TextView)findViewById(R.id.profile);
+                textView.setText("아이디 ="+ID+"\n이름 ="+NAME+"\n성별 ="+GENDER+"\n전화번호 = "+PHONE+"\n나이 ="+AGE);
                 HashMap<String, String> persons = new HashMap<String, String>();
-                persons.put(TAG_ID, ID);
-                persons.put(TAG_NAME, NAME);
-                persons.put(TAG_GENDER, GENDER);
-                persons.put(TAG_PHONE, PHONE);
-                persons.put(TAG_AGE, AGE);
+                persons.put(TAG_STAR,STAR);
+                persons.put(TAG_WRITER,WRITER);
+                persons.put(TAG_TEXT,TEXT);
                 personList.add(persons);
             }
         } catch (JSONException e) {
 
             Log.d(TAG, "showResult : ", e);
         }
-        ListAdapter adapter = new SimpleAdapter(
-                profile.this, personList, R.layout.item_profile,
-                new String[]{TAG_ID,TAG_NAME,TAG_GENDER,TAG_PHONE,TAG_AGE,TAG_country},
-                new int[]{R.id.id, R.id.NAME,R.id.GENDER,R.id.PHONE,R.id.AGE}
-        );
         ListAdapter adapter1 = new SimpleAdapter(
-                profile.this, personList, R.layout.item_profile,
+                profile.this, personList, R.layout.item_review,
                 new String[]{TAG_STAR,TAG_WRITER,TAG_TEXT},
                 new int[]{R.id.STAR, R.id.WRITER,R.id.TEXT}
         );
-        mListViewList.setAdapter(adapter);
         mListViewList2.setAdapter(adapter1);
 
     }

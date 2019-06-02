@@ -25,6 +25,7 @@
         <activity android:name="therdlay"></activity>
         <activity android:name="Write"></activity>
         <activity android:name="profile"></activity>
+        <activity android:name=".Search"></activity>
     </application>
 
 </manifest>

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.DatePicker;
@@ -30,8 +31,8 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
     TextView textView2;
     TextView time1;
     TextView time2;
-    //TextView searchgender;
-    //TextView searchid;
+    EditText searchgender;
+    EditText searchid;
     ArrayList<String> Do_arrayList;
     ArrayAdapter<String> Do_arrayAdapter;
     ArrayList<String> Si_arrayList;
@@ -56,8 +57,8 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
         textView2 = (TextView)findViewById((R.id.textView2));
         time1 = (TextView)findViewById(R.id.time1);
         time2 = (TextView)findViewById(R.id.time2);
-        //searchgender = (TextView)findViewById(R.id.searchgender);
-        //searchid = (TextView)findViewById(R.id.searchid);
+        searchgender = (EditText)findViewById(R.id.searchgender);
+        searchid = (EditText)findViewById(R.id.searchid);
         Calendar cal = new GregorianCalendar();
         mYear = cal.get(Calendar.YEAR);
         mMonth = cal.get(Calendar.MONTH);
@@ -161,12 +162,15 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
             String Time1=(TimeM1);
             String Data2=(DataM2);
             String Time2=(TimeM2);
-            System.out.println(DataM1+ "/"+  TimeM1+"/"+  DataM2 +"/"+ TimeM2);
+            String ID = searchid.getText().toString();
+            String GENDER = searchgender.getText().toString();
             intent.putExtra("time1",Time1);
             intent.putExtra("time2",Time2);
             intent.putExtra("data1",Data1);
             intent.putExtra("data2",Data2);
             intent.putExtra("area",AREA);
+            intent.putExtra("GENDER",GENDER);
+            intent.putExtra("ID",ID);
             startActivity(intent);
         }
     }

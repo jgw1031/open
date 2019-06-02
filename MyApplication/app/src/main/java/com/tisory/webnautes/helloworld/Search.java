@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class pro extends AppCompatActivity {
+public class Search extends AppCompatActivity {
     private static String TAG = "phpquerytest";
     private static final String TAG_JSON="Result";
     private static final String TAG_ID = "ID";
@@ -43,29 +43,27 @@ public class pro extends AppCompatActivity {
     private static final String TAG_GENDER = "GENDER";
     private static final String TAG_TITLE = "TITLE";
     private static final String TAG_CONTENTS = "CONTENTS";
-    private static final String TAG_TIMES ="TIMES";
     private TextView mTextViewResult;
     ArrayList<HashMap<String, String>> personList;
     ListView mListViewList;
+    EditText mEditTextSearchKeyword1,mEditTextSearchKeyword2;
     String mJsonString;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_board);
-        mTextViewResult = (TextView) findViewById(R.id.textView_main_result);
+        setContentView(R.layout.activity_search);
+        mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
         mListViewList = (ListView) findViewById(R.id.listView_main_list);
-        Intent intent=getIntent();
-        String DataM1=intent.getStringExtra("data1");
-        String TimeM1=intent.getStringExtra("time1");
-        String DataM2=intent.getStringExtra("data2");
-        String TimeM2=intent.getStringExtra("time2");
-        String  AREA = intent.getStringExtra("area");
-        String  ID = intent.getStringExtra("ID");
-        String  GENDER = intent.getStringExtra("GENDER");
-        GetData task = new GetData();
-        System.out.println(AREA +"|"+ DataM1+"|"+TimeM1+"|"+DataM2+"|"+TimeM2);    //test 용
-        task.execute( AREA,DataM1,TimeM1,DataM2,TimeM2,ID,GENDER);
+        mEditTextSearchKeyword1 = (EditText) findViewById(R.id.editText_main_searchKeyword1);
+        mEditTextSearchKeyword2 = (EditText) findViewById(R.id.editText_main_searchKeyword2);
+        Button button_search = (Button) findViewById(R.id.button_main_search);
+        button_search.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                personList.clear();
+                GetData task = new GetData();
+                task.execute( mEditTextSearchKeyword1.getText().toString(), mEditTextSearchKeyword2.getText().toString() );
+            }
+        });
         personList = new ArrayList<HashMap<String, String>>();
         mListViewList.setOnItemClickListener(itemClickListenerOfLanguageList);
     }
@@ -90,7 +88,7 @@ public class pro extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressDialog = ProgressDialog.show(pro.this,
+            progressDialog = ProgressDialog.show(Search.this,
                     "Please Wait", null, true, true);
         }
         @Override
@@ -107,18 +105,13 @@ public class pro extends AppCompatActivity {
                 mTextViewResult.setText(errorString);
             }
 
-        } //php 결과값 성공 실패 여부 판단
+        }
         @Override
         protected String doInBackground(String... params) {
-            String GENDER = params[6];
-            String ID = params[5];
-            String AREA = params[0];
-            String DataM1 = params[1];
-            String TimeM1 = params[2];
-            String DataM2 = params[3];
-            String TimeM2 = params[4];
-            String serverURL = "http://118.34.34.178/search.php";
-            String postParameters = ("GENDER="+GENDER+"&AREA="+AREA+"&DATA1="+DataM1+"&TIME1="+TimeM1+"&DATA2="+DataM2+"&TIME2="+TimeM2+"&ID="+ID);
+            String searchKeyword1 = params[0];
+            String searchKeyword2 = params[1];
+            String serverURL = "http://118.34.34.178/search2.php";
+            String postParameters = "GENDER=" + searchKeyword1 +"&AREA=" + searchKeyword2  ;
             try {
                 URL url = new URL(serverURL);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -176,6 +169,7 @@ public class pro extends AppCompatActivity {
             System.out.println("JSON String 생성");
             JSONObject jsonObject = new JSONObject(mJsonString.substring(mJsonString.indexOf("{"), mJsonString.lastIndexOf("}") + 1));
             JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+            System.out.println("1");
             for(int i=0;i<jsonArray.length();i++){
                 JSONObject item = jsonArray.getJSONObject(i);
                 String NO = item.getString(TAG_NO);
@@ -184,7 +178,8 @@ public class pro extends AppCompatActivity {
                 String TITLE =item.getString(TAG_TITLE);
                 String CONTENTS = item.getString(TAG_CONTENTS);
                 String GENDER = item.getString(TAG_GENDER);
-                String TIMES = item.getString(TAG_TIMES);
+
+                //mTextViewResult.setText(ID);
                 HashMap<String, String> persons = new HashMap<String, String>();
                 persons.put(TAG_NO, NO);
                 persons.put(TAG_ID, ID);
@@ -192,7 +187,6 @@ public class pro extends AppCompatActivity {
                 persons.put(TAG_TITLE, TITLE);
                 persons.put(TAG_CONTENTS, CONTENTS);
                 persons.put(TAG_GENDER, GENDER);
-                persons.put(TAG_TIMES, TIMES);
                 personList.add(persons);
             }
         } catch (JSONException e) {
@@ -200,9 +194,9 @@ public class pro extends AppCompatActivity {
             Log.d(TAG, "showResult : ", e);
         }
         ListAdapter adapter = new SimpleAdapter(
-                pro.this, personList, R.layout.item_list,
-                new String[]{TAG_ID,TAG_NO,TAG_AREA,TAG_GENDER,TAG_TITLE,TAG_CONTENTS,TAG_TIMES},
-                new int[]{R.id.id, R.id.NO,R.id.AREA,R.id.GENDER,R.id.TITLE,R.id.CONTENTS,R.id.TIME}
+                Search.this, personList, R.layout.item_list,
+                new String[]{TAG_ID,TAG_NO,TAG_AREA,TAG_GENDER,TAG_TITLE,TAG_CONTENTS},
+                new int[]{R.id.id, R.id.NO,R.id.AREA,R.id.GENDER,R.id.TITLE,R.id.CONTENTS}
         );
         mListViewList.setAdapter(adapter);
 
