@@ -53,13 +53,20 @@ public class profile extends AppCompatActivity {
         mListViewList2 = (ListView) findViewById(R.id.listView_review);
         Button button_search = (Button) findViewById(R.id.button_main_search);
         Intent intent=getIntent();
-        String ID=intent.getStringExtra("ID");
+        final String id=intent.getStringExtra("id");
+        final String ID=intent.getStringExtra("ID");
         GetData task = new GetData();
         task.execute(ID);
         personList = new ArrayList<HashMap<String, String>>();
         button_search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
+                Intent intent = new Intent(
+                        getApplicationContext(),
+                        review.class
+                );
+                intent.putExtra("id",id);
+                intent.putExtra("ID",ID);
+                startActivity(intent);
             }
         });
 

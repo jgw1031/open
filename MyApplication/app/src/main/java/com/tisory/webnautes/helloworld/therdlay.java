@@ -73,10 +73,12 @@ public class therdlay extends AppCompatActivity implements View.OnClickListener 
             alertDialogBuilder.show();
         }
         if(R.id.button8 == v.getId()) { //프로필보기
-
-            System.out.println(ID);
+            Intent intent=getIntent();
+            String id=intent.getStringExtra("id");
             Intent cancle = new Intent(getApplicationContext(), profile.class);
             cancle.putExtra("ID",ID);
+            cancle.putExtra("id",id);
+            System.out.println(ID+id);
             startActivity(cancle);
             finish();
         }

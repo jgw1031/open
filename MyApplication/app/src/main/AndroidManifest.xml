@@ -29,6 +29,7 @@
         <activity android:name="Write"></activity>
         <activity android:name="profile"></activity>
         <activity android:name=".Search"></activity>
+        <activity android:name=".review"></activity>
     </application>
 
 </manifest>

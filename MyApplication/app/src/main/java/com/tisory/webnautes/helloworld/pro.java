@@ -45,6 +45,8 @@ public class pro extends AppCompatActivity {
     private static final String TAG_CONTENTS = "CONTENTS";
     private static final String TAG_TIMES ="TIMES";
     private TextView mTextViewResult;
+
+    public  String  idc;
     ArrayList<HashMap<String, String>> personList;
     ListView mListViewList;
     String mJsonString;
@@ -63,11 +65,14 @@ public class pro extends AppCompatActivity {
         String  AREA = intent.getStringExtra("area");
         String  ID = intent.getStringExtra("ID");
         String  GENDER = intent.getStringExtra("GENDER");
+        idc = intent.getStringExtra("id");
+        System.out.println(idc);
         GetData task = new GetData();
         System.out.println(AREA +"|"+ DataM1+"|"+TimeM1+"|"+DataM2+"|"+TimeM2);    //test 용
         task.execute( AREA,DataM1,TimeM1,DataM2,TimeM2,ID,GENDER);
         personList = new ArrayList<HashMap<String, String>>();
         mListViewList.setOnItemClickListener(itemClickListenerOfLanguageList);
+
     }
     private OnItemClickListener itemClickListenerOfLanguageList = new OnItemClickListener()
     {
@@ -78,6 +83,8 @@ public class pro extends AppCompatActivity {
             Object vo = (Object)adapterView.getAdapter().getItem(pos);  //리스트뷰의 포지션 내용을 가져옴.
             Intent intent=new Intent(getApplicationContext(),therdlay.class);
             intent.putExtra("text",vo.toString());
+            intent.putExtra("id",idc);
+            System.out.println(idc);
             startActivity(intent);
             //vo 를 변수삼아 게시판창띄우면됨
         }

@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Write">
+    tools:context=".SubActivity">
 
     <MultiAutoCompleteTextView
-        android:id="@+id/multiAutoCompleteTextView"
+        android:id="@+id/review_text"
         android:layout_width="388dp"
         android:layout_height="48dp"
         android:layout_marginStart="15dp"
@@ -15,15 +15,15 @@
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="14dp"
-        android:hint="제목"
-        app:layout_constraintBottom_toTopOf="@+id/multiAutoCompleteTextView2"
+        android:hint="별점 숫자로 입력 1~5"
+        app:layout_constraintBottom_toTopOf="@+id/review_text2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <MultiAutoCompleteTextView
-        android:id="@+id/multiAutoCompleteTextView2"
+        android:id="@+id/review_text2"
         android:layout_width="383dp"
         android:layout_height="116dp"
         android:layout_marginStart="15dp"
@@ -34,10 +34,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/multiAutoCompleteTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/review_text" />
 
     <MultiAutoCompleteTextView
-        android:id="@+id/multiAutoCompleteTextView3"
+        android:id="@+id/review_text3"
         android:layout_width="384dp"
         android:layout_height="85dp"
         android:layout_marginStart="15dp"
@@ -45,14 +45,14 @@
         android:layout_marginTop="128dp"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
-        android:hint="지역"
+        android:hint="여행지역"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/multiAutoCompleteTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/review_text" />
 
     <MultiAutoCompleteTextView
-        android:id="@+id/multiAutoCompleteTextView4"
+        android:id="@+id/review_text4"
         android:layout_width="384dp"
         android:layout_height="85dp"
         android:layout_marginStart="15dp"
@@ -60,11 +60,11 @@
         android:layout_marginTop="232dp"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
-        android:hint="시간 :2019-06-02 19:49:00"
+        android:hint="여행날짜 :2019-06-02 "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/multiAutoCompleteTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/review_text" />
 
     <Button
         android:id="@+id/button3"
@@ -101,7 +101,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="31dp"
         android:layout_marginBottom="16dp"
-        android:text="게시글 작성"
+        android:text="리뷰 작성"
         android:textSize="50dp"
         app:layout_constraintBottom_toTopOf="@+id/multiAutoCompleteTextView"
         app:layout_constraintStart_toStartOf="parent"

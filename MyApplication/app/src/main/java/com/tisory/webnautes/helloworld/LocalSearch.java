@@ -172,6 +172,8 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
             new TimePickerDialog(LocalSearch.this, mTimeSetListenerm, mHourm, mMinutem, false).show();
         }
         if(R.id.searchgo == view.getId()) {        //검색버튼을 눌렀을 때
+            Intent con = getIntent();
+            String id = con.getStringExtra("id");
             Intent intent = new Intent(getApplicationContext(),pro.class);
             String AREA =(DoString+SiString+AttractionString);
             String Data1=(DataM1);
@@ -180,6 +182,7 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
             String Time2=(TimeM2);
             String ID = searchid.getText().toString();
             String GENDER = searchgender.getText().toString();
+            intent.putExtra("id",id);
             intent.putExtra("time1",Time1);
             intent.putExtra("time2",Time2);
             intent.putExtra("data1",Data1);

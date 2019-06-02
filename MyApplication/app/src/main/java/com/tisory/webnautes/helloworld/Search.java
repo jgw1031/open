@@ -45,6 +45,7 @@ public class Search extends AppCompatActivity {
     private static final String TAG_CONTENTS = "CONTENTS";
     private static final String TAG_TIMES = "TIMES";
     private TextView mTextViewResult;
+    public  String ID;
     ArrayList<HashMap<String, String>> personList;
     ListView mListViewList;
     EditText mEditTextSearchKeyword1,mEditTextSearchKeyword2;
@@ -69,7 +70,7 @@ public class Search extends AppCompatActivity {
         button_write.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent con =getIntent();
-                String ID=con.getStringExtra("id");
+                ID=con.getStringExtra("id");
                 Intent intent = new Intent(
                         getApplicationContext(),
                         Write.class);
@@ -87,8 +88,11 @@ public class Search extends AppCompatActivity {
         public void onItemClick(AdapterView<?> adapterView,View view, int pos, long id)
         {
             mListViewList = (ListView) findViewById(R.id.listView_main_list);
+            Intent con =getIntent();
+            ID=con.getStringExtra("id");
             Object vo = (Object)adapterView.getAdapter().getItem(pos);  //리스트뷰의 포지션 내용을 가져옴.
             Intent intent=new Intent(getApplicationContext(),therdlay.class);
+            intent.putExtra("id",ID);
             intent.putExtra("text",vo.toString());
             startActivity(intent);
             //vo 를 변수삼아 게시판창띄우면됨
