@@ -9,16 +9,16 @@ import android.widget.Toast;
 
 public class Guide extends Activity implements View.OnClickListener {
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_guide);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_guide);
 
-            Button post = (Button)findViewById(R.id.post);
-            post.setOnClickListener(this);
-            Button userbtn = (Button)findViewById(R.id.userbtn);
-            userbtn.setOnClickListener(this);
-        }
+        Button post = (Button)findViewById(R.id.post);
+        post.setOnClickListener(this);
+        Button userbtn = (Button)findViewById(R.id.userbtn);
+        userbtn.setOnClickListener(this);
+    }
 
     @Override
     public void onClick(View view) {

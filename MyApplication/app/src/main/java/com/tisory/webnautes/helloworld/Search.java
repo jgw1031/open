@@ -76,8 +76,8 @@ public class Search extends AppCompatActivity {
                 startActivity(intent);
                 intent.putExtra("id",id);
                 finish();
-                }
-            });
+            }
+        });
         personList = new ArrayList<HashMap<String, String>>();
         mListViewList.setOnItemClickListener(itemClickListenerOfLanguageList);
     }

@@ -3,6 +3,13 @@ package com.tisory.webnautes.helloworld;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import android.app.Activity;
+import android.app.FragmentManager;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -20,7 +27,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import java.util.ArrayList;
 
-public class LocalSearch extends AppCompatActivity implements View.OnClickListener {
+public class LocalSearch extends AppCompatActivity implements View.OnClickListener,OnMapReadyCallback {
     private Spinner Do;
     public String DoString;
     private Spinner Si;
@@ -46,6 +53,9 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_localsearch);
+        FragmentManager fragmentManager = getFragmentManager();
+        MapFragment mapFragment = (MapFragment)fragmentManager.findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
         Button select1 = (Button)findViewById(R.id.select1);
         select1.setOnClickListener(this);
         Button select2 = (Button)findViewById(R.id.select2);
@@ -137,7 +147,8 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
         Attraction.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getApplicationContext(),Attraction_arrayList.get(i)+"가 선택되었습니다.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),Attraction_arrayList.get(i)+"가 선택되었습니다.",
+                        Toast.LENGTH_SHORT).show();
                 AttractionString=Attraction_arrayList.get(i).toString();
             }
             @Override
@@ -231,5 +242,17 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
         textView2.setText(String.format("%d/%d/%d", mYearm,mMonthm + 1, mDaym));
         time1.setText(String.format("%d:%d", mHour, mMinute));
         time2.setText(String.format("%d:%d", mHourm, mMinutem));
+    }
+
+    @Override
+    public void onMapReady(GoogleMap map) {
+        LatLng SEOUL = new LatLng(37.56,126.97);
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(SEOUL);
+        markerOptions.title("서울");
+        markerOptions.snippet("한국의 수도");
+        map.addMarker(markerOptions);
+        map.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
+        map.animateCamera(CameraUpdateFactory.zoomTo(10));
     }
 }

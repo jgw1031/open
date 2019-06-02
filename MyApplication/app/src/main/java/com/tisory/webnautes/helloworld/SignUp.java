@@ -62,29 +62,49 @@ public class SignUp extends AppCompatActivity {
                     String GENDER = mEditTextGENDER.getText().toString();
                     InsertData task = new InsertData();
                     task.execute("http://" + IP_ADDRESS + "/insert1.php", ID,NAME,PASSWORD,AGE,PHONE,GENDER);
+
+                    if(R.id.button_main_insert == v.getId()){
+                        if(AGE.equals("") || GENDER.equals("") || ID.equals("") || PASSWORD.equals("")  || PHONE.equals("") || NAME.equals("")) {
+                            final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(SignUp.this);
+                            alertDialogBuilder.setTitle("회원가입 실패");
+                            alertDialogBuilder.setMessage("회원가입이 실패되었습니다.");
+                            alertDialogBuilder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    Intent intent = new Intent(
+                                            getApplicationContext(),
+                                            SignUp.class
+                                    );
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            });
+                            alertDialogBuilder.show();
+                        }
+                        else {
+                            final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(SignUp.this);
+                            alertDialogBuilder.setTitle("회원가입 성공");
+                            alertDialogBuilder.setMessage("회원가입이 되었습니다.");
+                            alertDialogBuilder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    Intent intent = new Intent(
+                                            getApplicationContext(),
+                                            MainActivity.class
+                                    );
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            });
+                            alertDialogBuilder.show();
+                        }
+                    }
                     mEditTextID.setText("");
                     mEditTextNAME.setText("");
                     mEditTextPASSWORD.setText("");
                     mEditTextAGE.setText("");
                     mEditTextPHONE.setText("");
                     mEditTextGENDER.setText("");
-                    if(R.id.button_main_insert == v.getId()){
-                        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(SignUp.this);
-                        alertDialogBuilder.setTitle("회원가입 성공");
-                        alertDialogBuilder.setMessage("회원가입이 되었습니다.");
-                        alertDialogBuilder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Intent intent = new Intent(
-                                        getApplicationContext(),
-                                        MainActivity.class
-                                );
-                                startActivity(intent);
-                                finish();
-                            }
-                        });
-                        alertDialogBuilder.show();
-                    }
                 }
             });
 
@@ -104,29 +124,41 @@ class InsertData extends AsyncTask<String, Void, String>{
         mTextViewResult.setText(result);
         Log.d(TAG, "POST response  - " + result);
     }
+
+
     @Override
     protected String doInBackground(String... params) {
+
         String ID = (String)params[1];
         String NAME = (String)params[2];
         String PASSWORD = (String)params[3];
         String AGE = (String)params[4];
         String PHONE = (String)params[5];
         String GENDER = (String)params[6];
+
         String serverURL = (String)params[0];
         String postParameters = "ID=" + ID + "&NAME=" + NAME +"&PASSWORD=" + PASSWORD + "&AGE=" + AGE +"&PHONE=" + PHONE +"&GENDER="+ GENDER;
         try {
+
             URL url = new URL(serverURL);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+
             httpURLConnection.setReadTimeout(5000);
             httpURLConnection.setConnectTimeout(5000);
             httpURLConnection.setRequestMethod("POST");
             httpURLConnection.connect();
+
+
             OutputStream outputStream = httpURLConnection.getOutputStream();
             outputStream.write(postParameters.getBytes("UTF-8"));
             outputStream.flush();
             outputStream.close();
+
+
             int responseStatusCode = httpURLConnection.getResponseCode();
             Log.d(TAG, "POST response code - " + responseStatusCode);
+
             InputStream inputStream;
             if(responseStatusCode == HttpURLConnection.HTTP_OK) {
                 inputStream = httpURLConnection.getInputStream();

@@ -22,8 +22,8 @@ public class SubActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if(R.id.searchbtn == view.getId()){
-            Intent con=getIntent();
-            String id=con.getStringExtra("id");
+            Intent con = getIntent();
+            String id = con.getStringExtra("id");
             Intent intent = new Intent(
                     getApplicationContext(),
                     LocalSearch.class);
@@ -32,13 +32,13 @@ public class SubActivity extends Activity implements View.OnClickListener {
         }
 
         if(R.id.Guidebtn == view.getId()){
-            Intent con=getIntent();
-            String id=con.getStringExtra("id");
+            Intent con = getIntent();
+            String id = con.getStringExtra("id");
             Intent intent = new Intent(
                     getApplicationContext(),
                     Guide.class);
-            startActivity(intent);
             intent.putExtra("id",id);
+            startActivity(intent);
             finish();
         }
     }
