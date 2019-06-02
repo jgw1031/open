@@ -23,15 +23,21 @@ public class Guide extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if(R.id.post == view.getId()){
+            Intent con=getIntent();
+            String id=con.getStringExtra("id");
             Intent intent = new Intent(
                     getApplicationContext(),
                     Search.class);
+            intent.putExtra("id",id);
             startActivity(intent);
         }
         if(R.id.userbtn == view.getId()){
+            Intent con=getIntent();
+            String id=con.getStringExtra("id");
             Intent intent = new Intent(
                     getApplicationContext(),
                     SubActivity.class);
+            intent.putExtra("id",id);
             startActivity(intent);
             finish();
         }

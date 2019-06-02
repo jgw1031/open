@@ -22,8 +22,11 @@ import java.util.ArrayList;
 
 public class LocalSearch extends AppCompatActivity implements View.OnClickListener {
     private Spinner Do;
+    public String DoString;
     private Spinner Si;
+    public String SiString;
     private Spinner Attraction;
+    public String AttractionString;
     private String DataM1,DataM2,TimeM1,TimeM2;
     int mYear, mMonth, mDay, mHour, mMinute;
     int mYearm, mMonthm, mDaym, mHourm, mMinutem;
@@ -89,6 +92,7 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(getApplicationContext(),Do_arrayList.get(i)+"가 선택되었습니다.",
                         Toast.LENGTH_SHORT).show();
+                DoString=Do_arrayList.get(i).toString();
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -113,6 +117,7 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(getApplicationContext(),Si_arrayList.get(i)+"가 선택되었습니다.",
                         Toast.LENGTH_SHORT).show();
+                SiString=Si_arrayList.get(i).toString();
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -132,8 +137,8 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
         Attraction.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getApplicationContext(),Attraction_arrayList.get(i)+"가 선택되었습니다.",
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),Attraction_arrayList.get(i)+"가 선택되었습니다.",Toast.LENGTH_SHORT).show();
+                AttractionString=Attraction_arrayList.get(i).toString();
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -157,7 +162,7 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
         }
         if(R.id.searchgo == view.getId()) {        //검색버튼을 눌렀을 때
             Intent intent = new Intent(getApplicationContext(),pro.class);
-            String AREA =(Do.getItemAtPosition(1).toString()+ Si.getItemAtPosition(1).toString()+Attraction.getItemAtPosition(1).toString());
+            String AREA =(DoString+SiString+AttractionString);
             String Data1=(DataM1);
             String Time1=(TimeM1);
             String Data2=(DataM2);

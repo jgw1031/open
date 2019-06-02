@@ -22,16 +22,7 @@ public class therdlay extends AppCompatActivity implements View.OnClickListener 
         TextView textView=(TextView)findViewById(R.id.textView6);
         TextView TITLEView=(TextView)findViewById(R.id.textView5);
         textView.setText(s);
-        String[] arr = s.split(":");
-        String s1 ="";
-        String s2 ="";
-        for(int i=0; i<arr.length; i++) {
-            s1=s1+arr[i];
-        }
-        String[] arr2 = s.split(",");
-        for(int i=0; i<arr2.length; i++) {
-            s2 = s2+arr2[i];
-        }
+        System.out.println(s);
         int indexNO = s.indexOf("NO");
         int indexAREA = s.indexOf("AREA");
         int indexGENDER = s.indexOf("GENDER");

@@ -104,41 +104,29 @@ class InsertData extends AsyncTask<String, Void, String>{
         mTextViewResult.setText(result);
         Log.d(TAG, "POST response  - " + result);
     }
-
-
     @Override
     protected String doInBackground(String... params) {
-
         String ID = (String)params[1];
         String NAME = (String)params[2];
         String PASSWORD = (String)params[3];
         String AGE = (String)params[4];
         String PHONE = (String)params[5];
         String GENDER = (String)params[6];
-
         String serverURL = (String)params[0];
         String postParameters = "ID=" + ID + "&NAME=" + NAME +"&PASSWORD=" + PASSWORD + "&AGE=" + AGE +"&PHONE=" + PHONE +"&GENDER="+ GENDER;
         try {
-
             URL url = new URL(serverURL);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-
-
             httpURLConnection.setReadTimeout(5000);
             httpURLConnection.setConnectTimeout(5000);
             httpURLConnection.setRequestMethod("POST");
             httpURLConnection.connect();
-
-
             OutputStream outputStream = httpURLConnection.getOutputStream();
             outputStream.write(postParameters.getBytes("UTF-8"));
             outputStream.flush();
             outputStream.close();
-
-
             int responseStatusCode = httpURLConnection.getResponseCode();
             Log.d(TAG, "POST response code - " + responseStatusCode);
-
             InputStream inputStream;
             if(responseStatusCode == HttpURLConnection.HTTP_OK) {
                 inputStream = httpURLConnection.getInputStream();

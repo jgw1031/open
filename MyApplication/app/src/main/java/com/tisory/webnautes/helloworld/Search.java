@@ -43,6 +43,7 @@ public class Search extends AppCompatActivity {
     private static final String TAG_GENDER = "GENDER";
     private static final String TAG_TITLE = "TITLE";
     private static final String TAG_CONTENTS = "CONTENTS";
+    private static final String TAG_TIMES = "TIMES";
     private TextView mTextViewResult;
     ArrayList<HashMap<String, String>> personList;
     ListView mListViewList;
@@ -57,6 +58,7 @@ public class Search extends AppCompatActivity {
         mEditTextSearchKeyword1 = (EditText) findViewById(R.id.editText_main_searchKeyword1);
         mEditTextSearchKeyword2 = (EditText) findViewById(R.id.editText_main_searchKeyword2);
         Button button_search = (Button) findViewById(R.id.button_main_search);
+        Button button_write = (Button) findViewById(R.id.button_Write);
         button_search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 personList.clear();
@@ -64,6 +66,18 @@ public class Search extends AppCompatActivity {
                 task.execute( mEditTextSearchKeyword1.getText().toString(), mEditTextSearchKeyword2.getText().toString() );
             }
         });
+        button_write.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent con=getIntent();
+                String id=con.getStringExtra("id");
+                Intent intent = new Intent(
+                        getApplicationContext(),
+                        Write.class);
+                startActivity(intent);
+                intent.putExtra("id",id);
+                finish();
+                }
+            });
         personList = new ArrayList<HashMap<String, String>>();
         mListViewList.setOnItemClickListener(itemClickListenerOfLanguageList);
     }
@@ -169,7 +183,6 @@ public class Search extends AppCompatActivity {
             System.out.println("JSON String 생성");
             JSONObject jsonObject = new JSONObject(mJsonString.substring(mJsonString.indexOf("{"), mJsonString.lastIndexOf("}") + 1));
             JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
-            System.out.println("1");
             for(int i=0;i<jsonArray.length();i++){
                 JSONObject item = jsonArray.getJSONObject(i);
                 String NO = item.getString(TAG_NO);
@@ -178,7 +191,7 @@ public class Search extends AppCompatActivity {
                 String TITLE =item.getString(TAG_TITLE);
                 String CONTENTS = item.getString(TAG_CONTENTS);
                 String GENDER = item.getString(TAG_GENDER);
-
+                String TIMES = item.getString(TAG_TIMES);
                 //mTextViewResult.setText(ID);
                 HashMap<String, String> persons = new HashMap<String, String>();
                 persons.put(TAG_NO, NO);
@@ -187,6 +200,7 @@ public class Search extends AppCompatActivity {
                 persons.put(TAG_TITLE, TITLE);
                 persons.put(TAG_CONTENTS, CONTENTS);
                 persons.put(TAG_GENDER, GENDER);
+                persons.put(TAG_TIMES, TIMES);
                 personList.add(persons);
             }
         } catch (JSONException e) {
@@ -195,8 +209,8 @@ public class Search extends AppCompatActivity {
         }
         ListAdapter adapter = new SimpleAdapter(
                 Search.this, personList, R.layout.item_list,
-                new String[]{TAG_ID,TAG_NO,TAG_AREA,TAG_GENDER,TAG_TITLE,TAG_CONTENTS},
-                new int[]{R.id.id, R.id.NO,R.id.AREA,R.id.GENDER,R.id.TITLE,R.id.CONTENTS}
+                new String[]{TAG_ID,TAG_NO,TAG_AREA,TAG_GENDER,TAG_TITLE,TAG_CONTENTS,TAG_TIMES},
+                new int[]{R.id.id, R.id.NO,R.id.AREA,R.id.GENDER,R.id.TITLE,R.id.CONTENTS,R.id.TIME}
         );
         mListViewList.setAdapter(adapter);
 
