@@ -56,7 +56,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             
             String searchKeyword1 = params[0];
             String searchKeyword2 = params[1];
-            String serverURL = "https://118.34.34.178/login.php";
+            String serverURL = "http://118.34.34.178/login.php";
             String postParameters = "ID=" + searchKeyword1 +"&PASSWORD=" + searchKeyword2  ;
             try {
                 URL url = new URL(serverURL);

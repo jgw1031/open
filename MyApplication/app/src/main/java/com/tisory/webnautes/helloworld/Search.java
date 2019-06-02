@@ -68,13 +68,13 @@ public class Search extends AppCompatActivity {
         });
         button_write.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent con=getIntent();
-                String id=con.getStringExtra("id");
+                Intent con =getIntent();
+                String ID=con.getStringExtra("id");
                 Intent intent = new Intent(
                         getApplicationContext(),
                         Write.class);
+                intent.putExtra("id",ID);
                 startActivity(intent);
-                intent.putExtra("id",id);
                 finish();
             }
         });
@@ -125,7 +125,7 @@ public class Search extends AppCompatActivity {
             String searchKeyword1 = params[0];
             String searchKeyword2 = params[1];
             String serverURL = "http://118.34.34.178/search2.php";
-            String postParameters = "GENDER=" + searchKeyword1 +"&AREA=" + searchKeyword2  ;
+            String postParameters = "GENDER=" + searchKeyword1 +"&ID=" + searchKeyword2  ;
             try {
                 URL url = new URL(serverURL);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
