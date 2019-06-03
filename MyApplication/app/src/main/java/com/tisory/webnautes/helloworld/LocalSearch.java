@@ -7,6 +7,7 @@ import android.app.FragmentManager;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -35,6 +36,7 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
     private Spinner Attraction;
     public String AttractionString;
     private String DataM1,DataM2,TimeM1,TimeM2;
+    private MapView mapView = null;
     int mYear, mMonth, mDay, mHour, mMinute;
     int mYearm, mMonthm, mDaym, mHourm, mMinutem;
     TextView textView1;
@@ -249,6 +251,7 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onMapReady(GoogleMap map) {
+
         LatLng SEOUL = new LatLng(37.56,126.97);
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(SEOUL);
