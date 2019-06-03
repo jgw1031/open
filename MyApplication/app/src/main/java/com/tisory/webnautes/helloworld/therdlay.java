@@ -7,6 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+
+import com.google.firebase.messaging.FirebaseMessagingService;
+import com.google.firebase.messaging.RemoteMessage;
 
 public class therdlay extends AppCompatActivity implements View.OnClickListener {
 
@@ -87,4 +93,8 @@ public class therdlay extends AppCompatActivity implements View.OnClickListener 
         }
     }
 
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
 }

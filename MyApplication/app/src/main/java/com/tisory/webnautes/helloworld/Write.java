@@ -77,20 +77,38 @@ public class Write extends AppCompatActivity {
                 task.execute("http://" + IP_ADDRESS + "/write.php",ID,TITLE,CONTENTS,AREA,TIME);
                 mEditTextTITLE.setText("");
                 mEditTextCONTENTS.setText("");
-                final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Write.this);
-                alertDialogBuilder.setTitle("게시글 등록");
-                alertDialogBuilder.setMessage("게시글등록이 완료되었습니다.");
-                alertDialogBuilder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent cancle = new Intent(getApplicationContext(), Search.class);
-                        cancle.putExtra("id",ID);
-                        startActivity(cancle);
-                        finish();
-                    }
+                if(TITLE.equals("") || CONTENTS.equals("") || AREA.equals("") || TIME.equals("")) {
+                    final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Write.this);
+                    alertDialogBuilder.setTitle("게시글 등록");
+                    alertDialogBuilder.setMessage("게시글등록이 실패되었습니다.");
+                    alertDialogBuilder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent cancle = new Intent(getApplicationContext(), Write.class);
+                            cancle.putExtra("id",ID);
+                            startActivity(cancle);
+                            finish();
+                        }
 
-                });
-                alertDialogBuilder.show();
+                    });
+                    alertDialogBuilder.show();
+                }
+                else {
+                    final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Write.this);
+                    alertDialogBuilder.setTitle("게시글 등록");
+                    alertDialogBuilder.setMessage("게시글등록이 완료되었습니다.");
+                    alertDialogBuilder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent cancle = new Intent(getApplicationContext(), Search.class);
+                            cancle.putExtra("id", ID);
+                            startActivity(cancle);
+                            finish();
+                        }
+
+                    });
+                    alertDialogBuilder.show();
+                }
             }
         });
 
