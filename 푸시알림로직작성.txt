@@ -1,0 +1,63 @@
+https://m.blog.naver.com/PostView.nhn?blogId=goback2u&logNo=220970045014&proxyReferer=https%3A%2F%2Fwww.google.com%2F
+--FCM푸시알림--
+
+우선 서버의 데이터베이스에 토큰을 저장하기 위한 테이블을 만든다.
+CREATE TABLE userTest(
+	id int(20) NOT NULL AUTO_INCREMENT,
+	Token varchar(200) NOT NULL,
+	
+	PRIMARY KEY(id),
+	UNIQUE KEY(Token)
+);
+
+테이블이 만들어지면 서버로직을 작성한다. 여기서는 라라벨(Laravel)프레임워크를 사용하여 소스를 작성하였다.
+
+Request 객체로부터 단말기의 토큰값을 읽어와서 앞서 만든 데이터베이스 테이블에 저장하는 로직이다.
+public function store(Request $request)
+	{
+		$token = $request->input("Token");
+		$query = "INSERT INTO userTest(Token) Values('$token') ON DUPLICATE KEY UPDATE Token = '$token'";
+		DB::insert($query);
+	}
+
+이제는 서버에서 FCM으로 푸시알림을 보내도록 요청하는 로직을 작성한다.
+public function index()
+{
+	$sql = "Select Token From userTest";
+	$result = DB::select($sql);
+	$tokens = array();
+	
+	if(sizeof($result) > 0) {
+		foreach ($result as $Rresult) {
+			$tokens[] = $Rresult->Token;
+		}
+	}
+
+	$myMessage = "새글이 등록되었습니다.";
+	$message = array("message" => $myMessage);
+
+	$url = 'https://fcm.googleeapis.com/fcm/send;
+	$fields = array(
+			'registration_ids' => $tokens,
+			'data' => $message
+		);
+	$headers = array(
+			'Authorization:key ='.'자신의 구글 키'
+		);
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL,$url);
+	curl_setopt($ch, CURLOPT_POST,true);
+	curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,0);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,false);
+	curl_setopt($ch, CURLOPT_POSTFIELDS,json_encode($fields);
+
+	$result = curl_exec($ch);
+	if(result === FALSE) {
+		die('Curl failed:'.curl_error($ch));
+	}
+	curl_close($ch);
+	echo $result;
+}
+	

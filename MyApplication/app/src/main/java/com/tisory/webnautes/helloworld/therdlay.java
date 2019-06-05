@@ -1,18 +1,16 @@
 package com.tisory.webnautes.helloworld;
+
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 
-import com.google.firebase.messaging.FirebaseMessagingService;
-import com.google.firebase.messaging.RemoteMessage;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class therdlay extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,6 +26,10 @@ public class therdlay extends AppCompatActivity implements View.OnClickListener 
         TextView textView=(TextView)findViewById(R.id.textView6);
         TextView TITLEView=(TextView)findViewById(R.id.textView5);
         textView.setText(s);
+
+        FirebaseMessaging.getInstance().subscribeToTopic("news");
+        FirebaseInstanceId.getInstance().getToken();
+
         System.out.println(s);
         int indexNO = s.indexOf("NO");
         int indexAREA = s.indexOf("AREA");
