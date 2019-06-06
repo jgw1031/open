@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="150dp"
+    android:padding="7dp"
+    android:paddingLeft="7dp"
+    android:paddingRight="7dp">
+
+
+    <TextView
+        android:id="@+id/ID"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="1dip"
+        android:paddingTop="4dip"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/country"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="1dip"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/NAME"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="1dip"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/GENDER"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="1dip"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/PHONE"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="1dip"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/AGE"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="1dip"
+        android:textStyle="bold" />
+</LinearLayout>
+
+

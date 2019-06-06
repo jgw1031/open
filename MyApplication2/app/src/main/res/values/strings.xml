@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="action_settings">Setting</string>
+    <string name="demostring">Hello</string>
+    <string name="id">ID</string>
+    <string name="name">Name</string>
+    <string name="password">password</string>
+    <string name="upid">upid</string>
+    <string name="upmain">up</string>
+    <string name="uppass">uppass</string>
+    <string name="signup">signup</string>
+    <string name="guidematch">GuideMatch</string>
+    <string name="pass">pass</string>
+    <string name="log">log</string>
+    <string name="sin">sin</string>
+    <string name="boradbtn">게시판</string>
+    <string name="searchbtn">지역검색</string>
+    <string name="searchgo">검색</string>
+    <string name="up">up</string>
+    <string name="Guidebtn">가이드로가기</string>
+    <string name="userbtn">사용자로가기</string>
+    <string name="post">게시판</string>
+    <string name="Do">Do</string>
+    <string name="userid">UserID</string>
+    <string name="userpassword">password</string>
+    <string name="phonenumber">phonenumber</string>
+    <string name="age">age</string>
+    <string name="username">name</string>
+    <string name="gender">gender</string>
+    <string name="userpass">password</string>
+    <string name="uid">ID</string>
+    <string name="upassword">password</string>
+    <string name="select1">날짜선택</string>
+    <string name="select2">날짜까지</string>
+    <string name="during">~</string>
+    <string name="textview1">TextView1</string>
+    <string name="textview2">TextView2</string>
+    <string name="time1">time1</string>
+    <string name="time2">TIME2</string>
+
+</resources>
