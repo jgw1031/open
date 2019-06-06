@@ -1,4 +1,4 @@
-package com.tisory.webnautes.helloworld;
+﻿package com.tisory.webnautes.helloworld;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -53,15 +53,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         passtext = (EditText) findViewById(R.id.pass);
         databaseReference = FirebaseDatabase.getInstance().getReference("id_list");
         getFirebaseDatabase();
-        System.out.println(contine);
-        if(contine == 2) {
-            Intent intent = new Intent(
-                    getApplicationContext(),
-                    SignUp.class
-            );
-            startActivity(intent);
-            finish();
-        }
+
     }
 
 
@@ -90,10 +82,20 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         intent.putExtra("id", ID);
                         startActivity(intent);
                         finish();
-                        contine=1;
+
+                        break;
                     }
+                    contine ++;
+                    System.out.println(contine);
                 }
-                contine=2;
+                if(contine == dataSnapshot.getChildrenCount()) {
+                    Intent intent = new Intent(
+                            getApplicationContext(),
+                            SignUp.class
+                    );
+                    startActivity(intent);
+                    finish();
+                }
             }
 
             @Override
