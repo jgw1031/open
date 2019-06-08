@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "296950040880",
+    "firebase_url": "https://leekwonwoo-test.firebaseio.com",
+    "project_id": "leekwonwoo-test",
+    "storage_bucket": "leekwonwoo-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:296950040880:android:bf9097a09e668e2d",
+        "android_client_info": {
+          "package_name": "com.tisory.webnautes.helloworld"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "296950040880-4qp503e7kjhhsgro60v8t4qddv7pbp12.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tisory.webnautes.helloworld",
+            "certificate_hash": "9304e289222f5cd7308d82824bb84ffe1ed28dac"
+          }
+        },
+        {
+          "client_id": "296950040880-it212tmemrs8csd92c0aojiuu7epubjh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCA_KJY7oW3Ra2DZBZS0CVny9fbJbHIv3g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "296950040880-it212tmemrs8csd92c0aojiuu7epubjh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
