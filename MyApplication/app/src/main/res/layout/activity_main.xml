@@ -13,7 +13,7 @@
         android:layout_marginStart="176dp"
         android:layout_marginLeft="176dp"
         android:layout_marginBottom="96dp"
-        android:text="@string/guidematch"
+        android:text="guidematch"
         app:layout_constraintBottom_toTopOf="@+id/log"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -27,7 +27,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text=""
-        android:hint="@string/id"
+        android:hint="id"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,7 +41,7 @@
         android:layout_marginEnd="66dp"
         android:layout_marginRight="66dp"
         android:layout_marginBottom="140dp"
-        android:text="@string/signup"
+        android:text="signup"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/sin"
         app:layout_constraintHorizontal_bias="1.0"
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="23dp"
         android:layout_marginRight="23dp"
-        android:text="@string/sin"
+        android:text="sin"
         app:layout_constraintBaseline_toBaselineOf="@+id/sup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/sup" />
@@ -67,7 +67,7 @@
         android:layout_marginBottom="56dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:hint="@string/password"
+        android:hint="password"
         app:layout_constraintBottom_toTopOf="@+id/sup"
         app:layout_constraintEnd_toEndOf="@+id/sin"
         tools:text="" />

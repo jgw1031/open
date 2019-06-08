@@ -9,9 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.messaging.FirebaseMessaging;
-
 public class therdlay extends AppCompatActivity implements View.OnClickListener {
 
     private String ID;
@@ -20,33 +17,27 @@ public class therdlay extends AppCompatActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_therdlay);
-
+        //FirebaseMessagingService.getInstance().subscribeToTopic("news");
+        //FirebaseInstanceId.getInstance().getToken();
         Intent intent=getIntent();
-        String s=intent.getStringExtra("text");
+        String s=intent.getStringExtra("data");
         TextView textView=(TextView)findViewById(R.id.textView6);
         TextView TITLEView=(TextView)findViewById(R.id.textView5);
         textView.setText(s);
 
-        FirebaseMessaging.getInstance().subscribeToTopic("news");
-        FirebaseInstanceId.getInstance().getToken();
-
         System.out.println(s);
-        int indexNO = s.indexOf("NO");
         int indexAREA = s.indexOf("AREA");
         int indexGENDER = s.indexOf("GENDER");
         int indexTITLE = s.indexOf("TITLE");
-        int indexID = s.indexOf("ID");
         int indexCONTENTS = s.indexOf("CONTENTS");
-        int indexTIME=s.indexOf("TIMES");
-        String TITLE = s.substring(indexTITLE+6, indexCONTENTS-2); //TITLE값
-        String CONTENT = s.substring(indexCONTENTS+9,indexTIME-2); //CONTENT값
-        String TIME = s.substring(indexTIME+6,indexID-2);
-        ID = s.substring(indexID+3, indexNO-2); //ID값
-        String NO = s.substring(indexNO+3, indexGENDER-2);     //NO값
-        String GENDER = s.substring(indexGENDER+7, indexAREA-2);    //GENDER값
-        String AREA = s.substring(indexAREA+5, s.indexOf("}"));   //AREA값
-        TITLEView.setText(NO+" "+TITLE);
-        textView.setText(AREA+"\n"+GENDER+"\n"+CONTENT);
+        int indexTIME=s.indexOf("TIME");
+        String TITLE = s.substring(indexTITLE+8,indexAREA); //TITLE값
+        String CONTENT = s.substring(indexCONTENTS+11,indexTIME); //CONTENT값
+        String TIME = s.substring(indexTIME+8);
+        String GENDER = s.substring(indexGENDER+9);    //GENDER값
+        String AREA = s.substring(indexAREA+7,indexCONTENTS);   //AREA값
+        TITLEView.setText(TITLE);
+        textView.setText(AREA+"\n"+TIME+"\n"+CONTENT);
         Button button5 = (Button)findViewById(R.id.button5);
         button5.setOnClickListener(this);
         Button button9 = (Button)findViewById(R.id.button9);
@@ -72,11 +63,7 @@ public class therdlay extends AppCompatActivity implements View.OnClickListener 
             alertDialogBuilder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    Intent cancle = new Intent(getApplicationContext(), pro.class);
-                    startActivity(cancle);
-                    dialogInterface.cancel();
                 }
-
             });
             alertDialogBuilder.show();
         }

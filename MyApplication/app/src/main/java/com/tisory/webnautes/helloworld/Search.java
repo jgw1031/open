@@ -211,9 +211,7 @@ public class Search extends AppCompatActivity {
 
             Log.d(TAG, "showResult : ", e);
         }
-        ListAdapter adapter = new SimpleAdapter(
-                Search.this, personList, R.layout.item_list,
-                new String[]{TAG_ID,TAG_NO,TAG_AREA,TAG_GENDER,TAG_TITLE,TAG_CONTENTS,TAG_TIMES},
+        ListAdapter adapter = new SimpleAdapter(Search.this, personList, R.layout.item_list,new String[]{TAG_ID,TAG_NO,TAG_AREA,TAG_GENDER,TAG_TITLE,TAG_CONTENTS,TAG_TIMES},
                 new int[]{R.id.id, R.id.NO,R.id.AREA,R.id.GENDER,R.id.TITLE,R.id.CONTENTS,R.id.TIME}
         );
         mListViewList.setAdapter(adapter);

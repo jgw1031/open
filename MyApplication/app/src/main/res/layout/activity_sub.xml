@@ -12,7 +12,7 @@
         android:layout_marginStart="140dp"
         android:layout_marginLeft="140dp"
         android:layout_marginTop="360dp"
-        android:text="@string/searchbtn"
+        android:text="searchbtn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="228dp"
-        android:text="@string/Guidebtn"
+        android:text="Guidebtn"
         app:layout_constraintEnd_toEndOf="@+id/searchbtn"
         app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="@+id/searchbtn"

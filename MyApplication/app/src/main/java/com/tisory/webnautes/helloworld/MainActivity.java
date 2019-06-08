@@ -1,149 +1,112 @@
 package com.tisory.webnautes.helloworld;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Looper;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 
-import static android.content.ContentValues.TAG;
+import java.util.ArrayList;
 
 public class MainActivity extends Activity implements View.OnClickListener {
-
+    static ArrayList<String> arrayIndex = new ArrayList<String>();
+    static ArrayList<String> arrayData = new ArrayList<String>();
     private EditText idtext;
     private EditText passtext;
     public String line;
     private String loginx;
+    private DatabaseReference databaseReference;
+    String ID;
+    public int contine=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button bin = (Button)findViewById(R.id.sin);
+
+        Button bin = (Button) findViewById(R.id.sin);
         bin.setOnClickListener(this);
-        Button bup = (Button)findViewById(R.id.sup);
+        Button bup = (Button) findViewById(R.id.sup);
         bup.setOnClickListener(this);
-        idtext = (EditText)findViewById(R.id.log);
-        passtext = (EditText)findViewById(R.id.pass);
-        }
-    private class GetData extends AsyncTask<String, Void, String> {
-        String errorString = null;
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-        @Override
-        protected String doInBackground(String... params) {
-            
-            String searchKeyword1 = params[0];
-            String searchKeyword2 = params[1];
-            String serverURL = "http://118.34.34.178/login.php";
-            String postParameters = "ID=" + searchKeyword1 +"&PASSWORD=" + searchKeyword2  ;
-            try {
-                URL url = new URL(serverURL);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setReadTimeout(5000);
-                httpURLConnection.setConnectTimeout(5000);
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoInput(true);
-                httpURLConnection.connect();
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                outputStream.write(postParameters.getBytes("UTF-8"));
-                outputStream.flush();
-                outputStream.close();
-                int responseStatusCode = httpURLConnection.getResponseCode();
-                Log.d(TAG, "response code - " + responseStatusCode);
-                InputStream inputStream;
-                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
-                    inputStream = httpURLConnection.getInputStream();
-                }
-                else{
-                    inputStream = httpURLConnection.getErrorStream();
-                }
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                StringBuilder sb = new StringBuilder();
-                String id = idtext.getText().toString();
-                String password = passtext.getText().toString();
-                while((line = bufferedReader.readLine()) != null){
-                    sb.append(line);
-                }
-                String result = sb.substring(sb.lastIndexOf("/>")+2);
+        idtext = (EditText) findViewById(R.id.log);
+        passtext = (EditText) findViewById(R.id.pass);
+        databaseReference = FirebaseDatabase.getInstance().getReference("id_list");
+        getFirebaseDatabase();
 
-                if(result.equals("success")){
+    }
+
+
+
+    public void getFirebaseDatabase() {
+        ValueEventListener postListener = new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.e("getFirebaseDatabase", "key: " + dataSnapshot.getChildrenCount());
+                arrayData.clear();
+                arrayIndex.clear();
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    String id = FirebaseInstanceId.getInstance().getToken();
+                    databaseReference.child("id_list").getDatabase();
+                    String key = postSnapshot.getKey();
+                    String pw = postSnapshot.getValue().toString();
+                    arrayIndex.add(key);
+                    System.out.println(pw);
+                    int indexId = pw.indexOf("id");
+                    ID = pw.substring(indexId + 3, pw.indexOf("}"));
+                    System.out.println(ID+id);
+                    if(id.equals(id)) {
+                        Toast.makeText(getApplicationContext(), "로그인!", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(
+                                getApplicationContext(),
+                                SubActivity.class);
+                        intent.putExtra("id", ID);
+                        startActivity(intent);
+                        finish();
+
+                        break;
+                    }
+                    contine ++;
+                    System.out.println(contine);
+                }
+                if(contine == dataSnapshot.getChildrenCount()) {
                     Intent intent = new Intent(
                             getApplicationContext(),
-                            SubActivity.class
-                    );
-                    intent.putExtra("id",id);
-                    intent.putExtra("pass",password);
-                    finish();
-                    startActivity(intent);
-                    setResult(RESULT_OK,intent);
-
-                }
-                else{
-                    System.out.println(result+"!@!@@!");
-                    Intent intent = new Intent(
-                            getApplicationContext(),
-                            MainActivity.class
+                            SignUp.class
                     );
                     startActivity(intent);
                     finish();
-                    Toast.makeText(MainActivity.this, "아이디와 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
                 }
-                bufferedReader.close();
-                return null;
-            } catch (Exception e) {
-
-                Log.d(TAG, "InsertData: Error ", e);
-                errorString = null;
-
-                return null;
             }
 
-        }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w("getFirebaseDatabase", "loadPost:onCancelled", databaseError.toException());
+            }
+        };
+        Query sortbyAge = FirebaseDatabase.getInstance().getReference().child("id_list").orderByChild("id");
+        sortbyAge.addListenerForSingleValueEvent(postListener);
     }
+
 
     @Override
     public void onClick(View view) {
 
-        if(R.id.sin == view.getId()){
 
-            MainActivity.GetData task = new MainActivity.GetData();
-            task.execute(idtext.getText().toString(), passtext.getText().toString());
-            System.out.println(loginx);
-           // if(loginx.equals("op"))
-
-        }
-        if(R.id.sup == view.getId()) {
-            Intent intent = new Intent(
-                    getApplicationContext(),
-                    SignUp.class
-            );
-            startActivity(intent);
-            finish();
-        }
     }
-
 }
+
+
 
