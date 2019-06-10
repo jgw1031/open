@@ -1,4 +1,5 @@
 package com.tisory.webnautes.helloworld;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -17,7 +18,7 @@ import com.google.firebase.messaging.RemoteMessage;
 public class therdlay extends AppCompatActivity implements View.OnClickListener {
 
     private String ID;
-
+    private String TITLE;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +37,7 @@ public class therdlay extends AppCompatActivity implements View.OnClickListener 
         int indexID = s.indexOf("ID");
         int indexCONTENTS = s.indexOf("CONTENTS");
         int indexTIME=s.indexOf("TIMES");
-        String TITLE = s.substring(indexTITLE+6, indexCONTENTS-2); //TITLE값
+        TITLE = s.substring(indexTITLE+6, indexCONTENTS-2); //TITLE값
         String CONTENT = s.substring(indexCONTENTS+9,indexTIME-2); //CONTENT값
         String TIME = s.substring(indexTIME+6,indexID-2);
         ID = s.substring(indexID+3, indexNO-2); //ID값
@@ -45,8 +46,8 @@ public class therdlay extends AppCompatActivity implements View.OnClickListener 
         String AREA = s.substring(indexAREA+5, s.indexOf("}"));   //AREA값
         TITLEView.setText(NO+" "+TITLE);
         textView.setText(AREA+"\n"+GENDER+"\n"+CONTENT);
-        Button button5 = (Button)findViewById(R.id.button5);
-        button5.setOnClickListener(this);
+        Button apply = (Button)findViewById(R.id.apply);
+        apply.setOnClickListener(this);
         Button button9 = (Button)findViewById(R.id.button9);
         button9.setOnClickListener(this);
         Button button8 = (Button)findViewById(R.id.button8);
@@ -54,15 +55,22 @@ public class therdlay extends AppCompatActivity implements View.OnClickListener 
     }
     public void onClick(View v)
     {
-        if(R.id.button5 == v.getId()) { //삭제
+        if(R.id.apply == v.getId()) { //삭제
             final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(therdlay.this);
             alertDialogBuilder.setTitle("게시글 삭제");
             alertDialogBuilder.setMessage("정말 삭제하시겠습니까?");
             alertDialogBuilder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    Intent cancle = new Intent(getApplicationContext(), pro.class);
-                    startActivity(cancle);
+                    NotificationManager notificationManager= (NotificationManager)therdlay.this.getSystemService(therdlay.this.NOTIFICATION_SERVICE);
+                    Intent intent1 = new Intent(therdlay.this.getApplicationContext(),pro.class); //인텐트 생성.
+                    Notification.Builder builder = new Notification.Builder(getApplicationContext());
+                    intent1.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP| Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    PendingIntent pendingNotificationIntent = PendingIntent.getActivity( therdlay.this,0, intent1,PendingIntent.FLAG_UPDATE_CURRENT);
+                    builder.setSmallIcon(R.drawable.common_google_signin_btn_icon_dark).setTicker("HETT").setWhen(System.currentTimeMillis())
+                            .setNumber(1).setContentTitle(TITLE).setContentText("신청완료")
+                            .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE).setContentIntent(pendingNotificationIntent).setAutoCancel(true).setOngoing(true);
+                    notificationManager.notify(1, builder.build()); // Notification send
                     finish();
                 }
 

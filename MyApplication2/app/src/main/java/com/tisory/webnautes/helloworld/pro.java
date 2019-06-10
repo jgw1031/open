@@ -124,7 +124,7 @@ public class pro extends AppCompatActivity {
             String TimeM1 = params[2];
             String DataM2 = params[3];
             String TimeM2 = params[4];
-            String serverURL = "http://118.34.34.178/search.php";
+            String serverURL = "http://192.168.0.72/search.php";
             String postParameters = ("GENDER="+GENDER+"&AREA="+AREA+"&DATA1="+DataM1+"&TIME1="+TimeM1+"&DATA2="+DataM2+"&TIME2="+TimeM2+"&ID="+ID);
             try {
                 URL url = new URL(serverURL);
