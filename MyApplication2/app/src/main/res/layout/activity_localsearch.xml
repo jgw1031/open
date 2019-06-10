@@ -135,11 +135,13 @@
         android:id="@+id/searchgender"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:hint="성별을 입력하세요"
         android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/searchgo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="587dp"
         tools:text="" />
 
     <fragment

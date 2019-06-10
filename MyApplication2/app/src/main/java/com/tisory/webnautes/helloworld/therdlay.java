@@ -74,7 +74,7 @@ public class therdlay extends AppCompatActivity implements View.OnClickListener 
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     NotificationManager notificationManager= (NotificationManager)therdlay.this.getSystemService(therdlay.this.NOTIFICATION_SERVICE);
-                    Intent intent1 = new Intent(therdlay.this.getApplicationContext(),pro.class); //인텐트 생성.
+                    Intent intent1 = new Intent(therdlay.this.getApplicationContext(),Search.class); //인텐트 생성.
                     Notification.Builder builder = new Notification.Builder(getApplicationContext());
                     intent1.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP| Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     PendingIntent pendingNotificationIntent = PendingIntent.getActivity( therdlay.this,0, intent1,PendingIntent.FLAG_UPDATE_CURRENT);
