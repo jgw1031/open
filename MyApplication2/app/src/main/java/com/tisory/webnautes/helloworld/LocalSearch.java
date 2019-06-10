@@ -51,6 +51,7 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
     ArrayList<String> Si_arrayList;
     ArrayAdapter<String> Si_arrayAdapter;
     ArrayList<String> Attraction_arrayList;
+    ArrayList<LatLng> Attraction_arrayListpro;
     ArrayAdapter<String> Attraction_arrayAdapter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -87,59 +88,14 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
         mHourm = cal.get(Calendar.HOUR_OF_DAY);
         mMinutem = cal.get(Calendar.MINUTE);
         UpdateNow();
-        Do_arrayList = new ArrayList<>();
-        Do_arrayList.add("충남");
-        Do_arrayList.add("서울");
-        Do_arrayList.add("대전");
-        Do_arrayList.add("대구");
-        Do_arrayList.add("부산");
-        Do_arrayList.add("충북");
-        Do_arrayList.add("경기도");
-        Do_arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
-                android.R.layout.simple_spinner_dropdown_item,
-                Do_arrayList);
-        Do = (Spinner)findViewById(R.id.Do);
-        Do.setAdapter(Do_arrayAdapter);
-        Do.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getApplicationContext(),Do_arrayList.get(i)+"가 선택되었습니다.",
-                        Toast.LENGTH_SHORT).show();
-                DoString=Do_arrayList.get(i).toString();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
-        //-----------------------------------------Do_arrayList-----------------------------------------------//
-        Si_arrayList = new ArrayList<>();
-        Si_arrayList.add("천안");
-        Si_arrayList.add("아산");
-        Si_arrayList.add("청주");
-        Si_arrayList.add("평택");
-        Si_arrayList.add("계룡");
-        Si_arrayList.add("논산");
-        Si_arrayList.add("파주");
-        Si_arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
-                android.R.layout.simple_spinner_dropdown_item,
-                Si_arrayList);
-        Si = (Spinner)findViewById(R.id.Si);
-        Si.setAdapter(Si_arrayAdapter);
-        Si.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getApplicationContext(),Si_arrayList.get(i)+"가 선택되었습니다.",
-                        Toast.LENGTH_SHORT).show();
-                SiString=Si_arrayList.get(i).toString();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
-        //-----------------------------------------Si_arrayList-----------------------------------------------//
         Attraction_arrayList = new ArrayList<>();
-        Attraction_arrayList.add("독립기념관");
+        Attraction_arrayListpro = new ArrayList<>();
+        Attraction_arrayList.add(" ");
+        LatLng SEOULs = new LatLng(36.8090768,127.1023921);
+        Attraction_arrayListpro.add(SEOULs);
         Attraction_arrayList.add("계룡산");
+        LatLng SEOUL = new LatLng(36.6939717,127.0342684);
+        Attraction_arrayListpro.add(SEOUL);
         Attraction_arrayList.add("현충사");
         Attraction_arrayList.add("신정호 호수공원");
         Attraction_arrayAdapter = new ArrayAdapter<>(getApplicationContext(),
@@ -152,6 +108,8 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(getApplicationContext(),Attraction_arrayList.get(i)+"가 선택되었습니다.",
                         Toast.LENGTH_SHORT).show();
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(Attraction_arrayListpro.get(i)));
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(12));
                 AttractionString=Attraction_arrayList.get(i).toString();
             }
             @Override
@@ -253,29 +211,23 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onMapReady(GoogleMap map) {
 
-        /*
-        LatLng SEOUL = new LatLng(37.56,126.97);
 
+        LatLng SEOUL = new LatLng(36.8090768,127.1023921);
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(SEOUL);
-        markerOptions.title("서울");
-        markerOptions.snippet("한국의 수도");
+        markerOptions.title("기준");
+        markerOptions.snippet("중앙설정 ");
         map.addMarker(markerOptions);
-        map.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
-        map.animateCamera(CameraUpdateFactory.zoomTo(10));
-        */
         mMap = map;
         for (int i = 0; i < 10; i++) {
-
             // 1. 마커 옵션 설정 (만드는 과정)
             MarkerOptions makerOptions = new MarkerOptions();
-            makerOptions.position(new LatLng(37.52487 + i, 126.92723));
+            makerOptions.position(new LatLng(36.6939717+ i, 127.0342684));
             makerOptions.title("마커" + i); // 타이틀.
-
             // 2. 마커 생성 (마커를 나타냄)
             mMap.addMarker(makerOptions);
-
         }
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(37.52487,12692723)));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(36.8090768,127.1023921)));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(12));
     }
 }

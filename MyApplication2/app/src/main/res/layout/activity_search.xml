@@ -46,7 +46,7 @@
         android:id="@+id/button_Write"
         android:layout_width="match_parent"
         android:layout_height="78dp"
-        android:text="Button" />
+        android:text="게시글 작성" />
 
     <TextView
         android:id="@+id/textView_main_result"
