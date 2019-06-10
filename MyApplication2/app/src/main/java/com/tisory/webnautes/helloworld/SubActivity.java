@@ -24,7 +24,6 @@ public class SubActivity extends Activity implements View.OnClickListener {
         if(R.id.searchbtn == view.getId()){
             Intent con = getIntent();
             String id = con.getStringExtra("id");
-            System.out.println(id);
             Intent intent = new Intent(
                     getApplicationContext(),
                     LocalSearch.class);

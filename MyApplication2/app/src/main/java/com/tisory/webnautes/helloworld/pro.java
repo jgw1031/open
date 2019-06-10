@@ -63,13 +63,10 @@ public class pro extends AppCompatActivity {
         String DataM2=intent.getStringExtra("data2");
         String TimeM2=intent.getStringExtra("time2");
         String  AREA = intent.getStringExtra("area");
-        String  ID = intent.getStringExtra("ID");
         String  GENDER = intent.getStringExtra("GENDER");
         idc = intent.getStringExtra("id");
-        System.out.println(idc);
         GetData task = new GetData();
-        System.out.println(AREA +"|"+ DataM1+"|"+TimeM1+"|"+DataM2+"|"+TimeM2);    //test 용
-        task.execute( AREA,DataM1,TimeM1,DataM2,TimeM2,ID,GENDER);
+        task.execute( AREA,DataM1,TimeM1,DataM2,TimeM2,GENDER);
         personList = new ArrayList<HashMap<String, String>>();
         mListViewList.setOnItemClickListener(itemClickListenerOfLanguageList);
 
@@ -84,7 +81,6 @@ public class pro extends AppCompatActivity {
             Intent intent=new Intent(getApplicationContext(),therdlay.class);
             intent.putExtra("text",vo.toString());
             intent.putExtra("id",idc);
-            System.out.println(idc);
             startActivity(intent);
             //vo 를 변수삼아 게시판창띄우면됨
         }
@@ -118,14 +114,13 @@ public class pro extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             String GENDER = params[6];
-            String ID = params[5];
             String AREA = params[0];
             String DataM1 = params[1];
             String TimeM1 = params[2];
             String DataM2 = params[3];
             String TimeM2 = params[4];
-            String serverURL = "http://192.168.0.72/search.php";
-            String postParameters = ("GENDER="+GENDER+"&AREA="+AREA+"&DATA1="+DataM1+"&TIME1="+TimeM1+"&DATA2="+DataM2+"&TIME2="+TimeM2+"&ID="+ID);
+            String serverURL = "http://211.225.70.184/search.php";
+            String postParameters = ("GENDER="+GENDER+"&AREA="+AREA+"&DATA1="+DataM1+"&TIME1="+TimeM1+"&DATA2="+DataM2+"&TIME2="+TimeM2);
             try {
                 URL url = new URL(serverURL);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();

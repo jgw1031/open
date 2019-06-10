@@ -31,6 +31,7 @@
         <activity android:name="profile"></activity>
         <activity android:name=".Search"></activity>
         <activity android:name=".review"></activity>
+        <activity android:name=".Board"></activity>
     </application>
 
 </manifest>

@@ -102,7 +102,7 @@ public class profile extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             String searchKeyword1 = params[0];
-            String serverURL = "http://192.168.0.72/profile.php";
+            String serverURL = "http://211.225.70.184/profile.php";
             String postParameters = "ID=" + searchKeyword1 ;
             try {
                 URL url = new URL(serverURL);
@@ -154,7 +154,6 @@ public class profile extends AppCompatActivity {
             JSONObject jsonObject = new JSONObject(mJsonString.substring(mJsonString.indexOf("{"), mJsonString.lastIndexOf("}") + 1));
             JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
             for(int i=0;i<jsonArray.length();i++) {
-                System.out.println(jsonArray);
                 JSONObject item = jsonArray.getJSONObject(i);
                 String ID = item.getString(TAG_ID);
                 String NAME = item.getString(TAG_NAME);
@@ -164,7 +163,6 @@ public class profile extends AppCompatActivity {
                 String STAR = item.getString(TAG_STAR);
                 String WRITER = item.getString(TAG_WRITER);
                 String TEXT = item.getString(TAG_TEXT);
-                System.out.println(ID+NAME+GENDER+PHONE+AGE);
                 TextView textView=(TextView)findViewById(R.id.profile);
                 textView.setText("아이디 ="+ID+"\n이름 ="+NAME+"\n성별 ="+GENDER+"\n전화번호 = "+PHONE+"\n나이 ="+AGE);
                 HashMap<String, String> persons = new HashMap<String, String>();
