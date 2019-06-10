@@ -13,9 +13,6 @@ import android.content.Intent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -23,21 +20,14 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Write extends AppCompatActivity {
-    private static String IP_ADDRESS = "118.34.34.178";
+    private static String IP_ADDRESS = "211.225.70.184";
     private static String TAG = "Write";
-    private DatabaseReference mPostReference;
     private EditText mEditTextTITLE;
     private EditText mEditTextCONTENTS;
     private EditText mEditTextAREA;
     private EditText mEditTextTIME;
-    public String TITLE ;
-    public String CONTENTS ;
-    public String AREA ;
-    public String TIME;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,12 +69,11 @@ public class Write extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 TITLE = mEditTextTITLE.getText().toString();
-                 CONTENTS = mEditTextCONTENTS.getText().toString();
-                 AREA = mEditTextAREA.getText().toString();
-                 TIME = mEditTextTIME.getText().toString();
-                System.out.println(TITLE+CONTENTS+AREA+TIME);
-                postFirebaseDatabase(true);
+                String TITLE = mEditTextTITLE.getText().toString();
+                String CONTENTS = mEditTextCONTENTS.getText().toString();
+                String AREA = mEditTextAREA.getText().toString();
+                String TIME = mEditTextTIME.getText().toString();
+                Write.InsertData task = new Write.InsertData();
                 mEditTextTITLE.setText("");
                 mEditTextCONTENTS.setText("");
                 if(TITLE.equals("") || CONTENTS.equals("") || AREA.equals("") || TIME.equals("")) {
@@ -104,6 +93,7 @@ public class Write extends AppCompatActivity {
                     alertDialogBuilder.show();
                 }
                 else {
+                    task.execute("http://" + IP_ADDRESS + "/write.php",ID,TITLE,CONTENTS,AREA,TIME);
                     final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Write.this);
                     alertDialogBuilder.setTitle("게시글 등록");
                     alertDialogBuilder.setMessage("게시글등록이 완료되었습니다.");
@@ -124,17 +114,65 @@ public class Write extends AppCompatActivity {
 
     }
 
-    public void postFirebaseDatabase(boolean add){
-        mPostReference = FirebaseDatabase.getInstance().getReference();
-        Map<String, Object> childUpdates = new HashMap<>();
-        Map<String, Object> postValues = null;
-        String ID = FirebaseInstanceId.getInstance().getToken();
-        if(add){
-            com.tisory.webnautes.helloworld.FirebasePost post = new  com.tisory.webnautes.helloworld.FirebasePost(ID,TITLE,CONTENTS,AREA,TIME);
-            postValues = post.toMap();
+
+
+    class InsertData extends AsyncTask<String, Void, String> {
+        ProgressDialog progressDialog;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = ProgressDialog.show(Write.this,
+                    "Please Wait", null, true, true);
         }
-        childUpdates.put("/board/" + AREA, postValues);
-        mPostReference.updateChildren(childUpdates);
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            progressDialog.dismiss();
+            Log.d(TAG, "POST response  - " + result);
+        }
+        @Override
+        protected String doInBackground(String... params) {
+            String ID = (String)params[1];
+            String TITLE = (String)params[2];
+            String CONTENTS = (String)params[3];
+            String AREA = (String)params[4];
+            String TIMES = (String)params[5];
+            String serverURL = (String)params[0];
+            String postParameters = "TITLE=" + TITLE +"&CONTENTS=" + CONTENTS+"&ID=" + ID+"&AREA="+AREA+"&TIMES="+TIMES;
+            try {
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.connect();
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                Log.d(TAG, "POST response code - " + responseStatusCode);
+                InputStream inputStream;
+                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                }
+                else{
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+                while((line = bufferedReader.readLine()) != null){
+                    sb.append(line);
+                }
+                bufferedReader.close();
+                return sb.toString();
+            } catch (Exception e) {
+                Log.d(TAG, "InsertData: Error ", e);
+                return new String("Error: " + e.getMessage());
+            }
+        }
     }
 }
 

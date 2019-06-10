@@ -22,7 +22,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class review extends AppCompatActivity {
-    private static String IP_ADDRESS = "118.34.34.178";
+    private static String IP_ADDRESS = "211.225.70.184";
     private static String TAG = "Write";
     private EditText mEditTextTEXT;
     private EditText mEditTextSTAR;

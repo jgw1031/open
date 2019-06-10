@@ -1,142 +1,185 @@
 package com.tisory.webnautes.helloworld;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Color;
-import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AbsListView;
+import android.widget.Button;
+
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.iid.FirebaseInstanceId;
+public class SignUp extends AppCompatActivity {
+        private static String IP_ADDRESS = "211.225.70.184";
+        private static String TAG = "phptest1";
+        private EditText mEditTextID;
+        private EditText mEditTextNAME;
+        private EditText mEditTextPASSWORD;
+        private EditText mEditTextAGE;
+        private EditText mEditTextPHONE;
+        private EditText mEditTextGENDER;
+        private TextView mTextViewResult;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_signup);
+            mEditTextID = (EditText)findViewById(R.id.editText_main_ID);
+            mEditTextNAME = (EditText)findViewById(R.id.editText_main_NAME);
+            mEditTextPASSWORD = (EditText)findViewById(R.id.editText_main_PASSWORD);
+            mEditTextAGE = (EditText)findViewById(R.id.editText_main_AGE);
+            mEditTextPHONE = (EditText)findViewById(R.id.editText_main_PHONE);
+            mEditTextGENDER = (EditText)findViewById(R.id.editText_main_GENDER);
+            mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
+            mTextViewResult.setMovementMethod(new ScrollingMovementMethod());
+            Button buttonInsert = (Button)findViewById(R.id.button_main_insert);
+            buttonInsert.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String ID = mEditTextID.getText().toString();
+                    String NAME = mEditTextNAME.getText().toString();
+                    String PASSWORD = mEditTextPASSWORD.getText().toString();
+                    String AGE = mEditTextAGE.getText().toString();
+                    String PHONE = mEditTextPHONE.getText().toString();
+                    String GENDER = mEditTextGENDER.getText().toString();
+                    InsertData task = new InsertData();
+                    task.execute("http://" + IP_ADDRESS + "/insert1.php", ID,NAME,PASSWORD,AGE,PHONE,GENDER);
 
-public class SignUp extends AppCompatActivity implements View.OnClickListener{
-
-    private DatabaseReference mPostReference;
-
-    private EditText mEditTextID;
-    private EditText mEditTextNAME;
-    private EditText mEditTextPASSWORD;
-    private EditText mEditTextAGE;
-    private EditText mEditTextPHONE;
-    private EditText mEditTextGENDER;
-
-    String ID;
-    String name;
-    String  pw;
-    String gender = "";
-    String phoen;
-    String age;
-    String sort = "id";
-
-    ArrayAdapter<String> arrayAdapter;
-
-    static ArrayList<String> arrayIndex =  new ArrayList<String>();
-    static ArrayList<String> arrayData = new ArrayList<String>();
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
-        mEditTextID = (EditText)findViewById(R.id.editText_main_ID);
-        mEditTextNAME = (EditText)findViewById(R.id.editText_main_NAME);
-        mEditTextPASSWORD = (EditText)findViewById(R.id.editText_main_PASSWORD);
-        mEditTextAGE = (EditText)findViewById(R.id.editText_main_AGE);
-        mEditTextPHONE = (EditText)findViewById(R.id.editText_main_PHONE);
-        mEditTextGENDER = (EditText)findViewById(R.id.editText_main_GENDER);
-        Button buttonInsert = (Button)findViewById(R.id.button_main_insert);
-        buttonInsert.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-
-                                                    name = mEditTextNAME.getText().toString();
-                                                    pw = mEditTextPASSWORD.getText().toString();
-                                                    age = mEditTextAGE.getText().toString();
-                                                    phoen = mEditTextPHONE.getText().toString();
-                                                    gender = mEditTextGENDER.getText().toString();
-                                                        postFirebaseDatabase(true);
-                                                        Toast.makeText(SignUp.this, "가입 완료되었습니다", Toast.LENGTH_LONG).show();
-                                                        Intent intent = new Intent(
-                                                                getApplicationContext(),
-                                                                MainActivity.class
-                                                        );
-                                                        startActivity(intent);
-                                                        finish();
-
-                                                    mEditTextID.requestFocus();
-                                                    mEditTextID.setCursorVisible(true);
-                                            }
-                                        });
-        getFirebaseDatabase();
-    }
-
-    public void postFirebaseDatabase(boolean add){
-        mPostReference = FirebaseDatabase.getInstance().getReference();
-        Map<String, Object> childUpdates = new HashMap<>();
-        Map<String, Object> postValues = null;
-        String ID = FirebaseInstanceId.getInstance().getToken();
-        if(add){
-            com.tisory.webnautes.helloworld.FirebasePost post = new  com.tisory.webnautes.helloworld.FirebasePost(ID, name, pw, gender,phoen,age);
-            postValues = post.toMap();
-        }
-        childUpdates.put("/id_list/" + ID, postValues);
-        mPostReference.updateChildren(childUpdates);
-    }
-
-    public void getFirebaseDatabase(){
-        ValueEventListener postListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.e("getFirebaseDatabase", "key: " + dataSnapshot.getChildrenCount());
-                arrayData.clear();
-                arrayIndex.clear();
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    String key = postSnapshot.getKey();
-                    arrayIndex.add(key);
+                    if(R.id.button_main_insert == v.getId()){
+                        if(AGE.equals("") || GENDER.equals("") || ID.equals("") || PASSWORD.equals("")  || PHONE.equals("") || NAME.equals("")) {
+                            final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(SignUp.this);
+                            alertDialogBuilder.setTitle("회원가입 실패");
+                            alertDialogBuilder.setMessage("회원가입이 실패되었습니다.");
+                            alertDialogBuilder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    Intent intent = new Intent(
+                                            getApplicationContext(),
+                                            SignUp.class
+                                    );
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            });
+                            alertDialogBuilder.show();
+                        }
+                        else {
+                            final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(SignUp.this);
+                            alertDialogBuilder.setTitle("회원가입 성공");
+                            alertDialogBuilder.setMessage("회원가입이 되었습니다.");
+                            alertDialogBuilder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    Intent intent = new Intent(
+                                            getApplicationContext(),
+                                            MainActivity.class
+                                    );
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            });
+                            alertDialogBuilder.show();
+                        }
+                    }
+                    mEditTextID.setText("");
+                    mEditTextNAME.setText("");
+                    mEditTextPASSWORD.setText("");
+                    mEditTextAGE.setText("");
+                    mEditTextPHONE.setText("");
+                    mEditTextGENDER.setText("");
                 }
-            }
+            });
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.w("getFirebaseDatabase","loadPost:onCancelled", databaseError.toException());
-            }
-        };
-        Query sortbyAge = FirebaseDatabase.getInstance().getReference().child("id_list").orderByChild(sort);
-        sortbyAge.addListenerForSingleValueEvent(postListener);
+        }
+class InsertData extends AsyncTask<String, Void, String>{
+    ProgressDialog progressDialog;
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        progressDialog = ProgressDialog.show(SignUp.this,
+                "Please Wait", null, true, true);
     }
-
-    public boolean IsExistID(){
-        boolean IsExist = arrayIndex.contains(ID);
-        return IsExist;
+    @Override
+    protected void onPostExecute(String result) {
+        super.onPostExecute(result);
+        progressDialog.dismiss();
+        mTextViewResult.setText(result);
+        Log.d(TAG, "POST response  - " + result);
     }
 
 
     @Override
-    public void onClick(View v) {
+    protected String doInBackground(String... params) {
 
+        String ID = (String)params[1];
+        String NAME = (String)params[2];
+        String PASSWORD = (String)params[3];
+        String AGE = (String)params[4];
+        String PHONE = (String)params[5];
+        String GENDER = (String)params[6];
+
+        String serverURL = (String)params[0];
+        String postParameters = "ID=" + ID + "&NAME=" + NAME +"&PASSWORD=" + PASSWORD + "&AGE=" + AGE +"&PHONE=" + PHONE +"&GENDER="+ GENDER;
+        try {
+
+            URL url = new URL(serverURL);
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+
+            httpURLConnection.setReadTimeout(5000);
+            httpURLConnection.setConnectTimeout(5000);
+            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.connect();
+
+
+            OutputStream outputStream = httpURLConnection.getOutputStream();
+            outputStream.write(postParameters.getBytes("UTF-8"));
+            outputStream.flush();
+            outputStream.close();
+
+
+            int responseStatusCode = httpURLConnection.getResponseCode();
+            Log.d(TAG, "POST response code - " + responseStatusCode);
+
+            InputStream inputStream;
+            if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+                inputStream = httpURLConnection.getInputStream();
+            }
+            else{
+                inputStream = httpURLConnection.getErrorStream();
+            }
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+            while((line = bufferedReader.readLine()) != null){
+                sb.append(line);
+            }
+            bufferedReader.close();
+            return sb.toString();
+        } catch (Exception e) {
+            Log.d(TAG, "InsertData: Error ", e);
+            return new String("Error: " + e.getMessage());
+        }
     }
 }
+}
+

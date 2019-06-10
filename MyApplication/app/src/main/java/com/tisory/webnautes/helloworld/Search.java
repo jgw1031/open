@@ -128,7 +128,7 @@ public class Search extends AppCompatActivity {
         protected String doInBackground(String... params) {
             String searchKeyword1 = params[0];
             String searchKeyword2 = params[1];
-            String serverURL = "http://118.34.34.178/search2.php";
+            String serverURL = "http://211.225.70.184/search2.php";
             String postParameters = "GENDER=" + searchKeyword1 +"&ID=" + searchKeyword2  ;
             try {
                 URL url = new URL(serverURL);
@@ -211,7 +211,9 @@ public class Search extends AppCompatActivity {
 
             Log.d(TAG, "showResult : ", e);
         }
-        ListAdapter adapter = new SimpleAdapter(Search.this, personList, R.layout.item_list,new String[]{TAG_ID,TAG_NO,TAG_AREA,TAG_GENDER,TAG_TITLE,TAG_CONTENTS,TAG_TIMES},
+        ListAdapter adapter = new SimpleAdapter(
+                Search.this, personList, R.layout.item_list,
+                new String[]{TAG_ID,TAG_NO,TAG_AREA,TAG_GENDER,TAG_TITLE,TAG_CONTENTS,TAG_TIMES},
                 new int[]{R.id.id, R.id.NO,R.id.AREA,R.id.GENDER,R.id.TITLE,R.id.CONTENTS,R.id.TIME}
         );
         mListViewList.setAdapter(adapter);

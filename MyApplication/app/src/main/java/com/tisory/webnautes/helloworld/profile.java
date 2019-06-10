@@ -102,7 +102,7 @@ public class profile extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             String searchKeyword1 = params[0];
-            String serverURL = "http://118.34.34.178/profile.php";
+            String serverURL = "http://211.225.70.184/profile.php";
             String postParameters = "ID=" + searchKeyword1 ;
             try {
                 URL url = new URL(serverURL);

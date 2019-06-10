@@ -6,30 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.tisory.webnautes.helloworld.LocalSearch">
 
-    <Spinner
-        android:id="@+id/Do"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="330dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/map"
-        app:layout_constraintVertical_bias="0.472" />
-
-    <Spinner
-        android:id="@+id/Si"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/Attraction"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Do" />
 
     <Spinner
         android:id="@+id/Attraction"
@@ -37,15 +13,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toTopOf="@+id/select1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Do" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/searchgo"
@@ -158,36 +132,28 @@
         app:layout_constraintStart_toEndOf="@+id/searchgender" />
 
     <EditText
-        android:id="@+id/searchid"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:hint="ID를 입력하세요"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/searchgo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="" />
-
-    <EditText
         android:id="@+id/searchgender"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="99dp"
         android:hint="성별을 입력하세요"
         android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/searchid"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/map"
         tools:text="" />
 
     <fragment
         android:id="@+id/map"
+        android:name="com.google.android.gms.maps.MapFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="80dp"
-        app:layout_constraintBottom_toTopOf="@+id/Do"
+        android:layout_marginBottom="145dp"
+        app:layout_constraintBottom_toTopOf="@+id/searchgender"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:name="com.google.android.gms.maps.MapFragment"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
