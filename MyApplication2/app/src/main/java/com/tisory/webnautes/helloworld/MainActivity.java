@@ -1,6 +1,9 @@
 package com.tisory.webnautes.helloworld;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Handler;
@@ -56,7 +59,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             
             String searchKeyword1 = params[0];
             String searchKeyword2 = params[1];
-            String serverURL = "http://192.168.0.72/login.php";
+            String serverURL = "http://211.225.70.184/login.php";
             String postParameters = "ID=" + searchKeyword1 +"&PASSWORD=" + searchKeyword2  ;
             try {
                 URL url = new URL(serverURL);
@@ -88,8 +91,30 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     sb.append(line);
                 }
                 String result = sb.substring(sb.lastIndexOf("/>")+2);
+                System.out.println(result);
+                if(result.equals("successb")){
+                    Intent intent = new Intent(
+                            getApplicationContext(),
+                            SubActivity.class
+                    );
+                    intent.putExtra("id",id);
+                    intent.putExtra("pass",password);
+                    finish();
+                    startActivity(intent);
+                    setResult(RESULT_OK,intent);
 
-                if(result.equals("success")){
+                }
+                else if(result.equals("successa")){
+                    NotificationManager notificationManager= (NotificationManager)MainActivity.this.getSystemService(MainActivity.this.NOTIFICATION_SERVICE);
+                    Intent intent1 = new Intent(MainActivity.this.getApplicationContext(),Board.class); //인텐트 생성.
+                    Notification.Builder builder = new Notification.Builder(getApplicationContext());
+                    intent1.putExtra("id",id);
+                    intent1.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP| Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    PendingIntent pendingNotificationIntent = PendingIntent.getActivity( MainActivity.this,0, intent1,PendingIntent.FLAG_UPDATE_CURRENT);
+                    builder.setSmallIcon(R.drawable.common_google_signin_btn_icon_dark).setTicker("HETT").setWhen(System.currentTimeMillis())
+                            .setNumber(1).setContentTitle("새로운 매칭 ").setContentText("가이드 신청자가 있습니다 ")
+                            .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE).setContentIntent(pendingNotificationIntent).setAutoCancel(true).setOngoing(true);
+                    notificationManager.notify(1, builder.build()); // Notification send
                     Intent intent = new Intent(
                             getApplicationContext(),
                             SubActivity.class
@@ -123,12 +148,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         }
     }
-
     @Override
     public void onClick(View view) {
 
         if(R.id.sin == view.getId()){
-
             MainActivity.GetData task = new MainActivity.GetData();
             task.execute(idtext.getText().toString(), passtext.getText().toString());
             System.out.println(loginx);

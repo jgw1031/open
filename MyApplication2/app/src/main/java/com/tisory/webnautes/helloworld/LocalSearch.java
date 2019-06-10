@@ -75,7 +75,6 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
         time1 = (TextView)findViewById(R.id.time1);
         time2 = (TextView)findViewById(R.id.time2);
         searchgender = (EditText)findViewById(R.id.searchgender);
-        searchid = (EditText)findViewById(R.id.searchid);
         Calendar cal = new GregorianCalendar();
         mYear = cal.get(Calendar.YEAR);
         mMonth = cal.get(Calendar.MONTH);
@@ -141,7 +140,6 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
             String Time1=(TimeM1);
             String Data2=(DataM2);
             String Time2=(TimeM2);
-            String ID = searchid.getText().toString();
             String GENDER = searchgender.getText().toString();
             intent.putExtra("id",id);
             intent.putExtra("time1",Time1);
@@ -150,7 +148,6 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
             intent.putExtra("data2",Data2);
             intent.putExtra("area",AREA);
             intent.putExtra("GENDER",GENDER);
-            intent.putExtra("ID",ID);
             startActivity(intent);
         }
     }

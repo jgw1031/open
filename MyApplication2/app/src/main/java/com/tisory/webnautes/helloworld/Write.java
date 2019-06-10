@@ -22,7 +22,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class Write extends AppCompatActivity {
-    private static String IP_ADDRESS = "192.168.0.72";
+    private static String IP_ADDRESS = "211.225.70.184";
     private static String TAG = "Write";
     private EditText mEditTextTITLE;
     private EditText mEditTextCONTENTS;
@@ -74,7 +74,6 @@ public class Write extends AppCompatActivity {
                 String AREA = mEditTextAREA.getText().toString();
                 String TIME = mEditTextTIME.getText().toString();
                 Write.InsertData task = new Write.InsertData();
-                task.execute("http://" + IP_ADDRESS + "/write.php",ID,TITLE,CONTENTS,AREA,TIME);
                 mEditTextTITLE.setText("");
                 mEditTextCONTENTS.setText("");
                 if(TITLE.equals("") || CONTENTS.equals("") || AREA.equals("") || TIME.equals("")) {
@@ -94,6 +93,7 @@ public class Write extends AppCompatActivity {
                     alertDialogBuilder.show();
                 }
                 else {
+                    task.execute("http://" + IP_ADDRESS + "/write.php",ID,TITLE,CONTENTS,AREA,TIME);
                     final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Write.this);
                     alertDialogBuilder.setTitle("게시글 등록");
                     alertDialogBuilder.setMessage("게시글등록이 완료되었습니다.");
