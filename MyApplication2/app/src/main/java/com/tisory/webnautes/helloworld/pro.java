@@ -113,7 +113,7 @@ public class pro extends AppCompatActivity {
         } //php 결과값 성공 실패 여부 판단
         @Override
         protected String doInBackground(String... params) {
-            String GENDER = params[6];
+            String GENDER = params[5];
             String AREA = params[0];
             String DataM1 = params[1];
             String TimeM1 = params[2];

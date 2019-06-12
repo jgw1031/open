@@ -167,7 +167,7 @@ public class LocalSearch extends AppCompatActivity implements View.OnClickListen
             Intent con = getIntent();
             String id = con.getStringExtra("id");
             Intent intent = new Intent(getApplicationContext(),pro.class);
-            String AREA =(DoString+SiString+AttractionString);
+            String AREA =(AttractionString);
             String Data1=(DataM1);
             String Time1=(TimeM1);
             String Data2=(DataM2);

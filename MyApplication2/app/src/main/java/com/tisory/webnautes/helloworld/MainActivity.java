@@ -114,6 +114,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             .setNumber(1).setContentTitle("새로운 매칭 ").setContentText("가이드 신청자가 있습니다 ")
                             .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE).setContentIntent(pendingNotificationIntent).setAutoCancel(true).setOngoing(true);
                     notificationManager.notify(1, builder.build()); // Notification send
+                    
                     Intent intent = new Intent(
                             getApplicationContext(),
                             SubActivity.class

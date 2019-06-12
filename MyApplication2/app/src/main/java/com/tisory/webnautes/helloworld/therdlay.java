@@ -48,13 +48,14 @@ public class therdlay extends AppCompatActivity implements View.OnClickListener 
         int indexID = s.indexOf("ID");
         int indexCONTENTS = s.indexOf("CONTENTS");
         int indexTIME=s.indexOf("TIMES");
-        TITLE = s.substring(indexTITLE+6, indexCONTENTS-2); //TITLE값
-        String CONTENT = s.substring(indexCONTENTS+9,indexTIME-2); //CONTENT값
-        String TIME = s.substring(indexTIME+6,indexID-2);
-        ID = s.substring(indexID+3, indexNO-2); //ID값
-        String NO = s.substring(indexNO+3, indexGENDER-2);     //NO값
-        String GENDER = s.substring(indexGENDER+7, indexAREA-2);    //GENDER값
-        String AREA = s.substring(indexAREA+5, s.indexOf("}"));   //AREA값
+        System.out.println(s);
+        TITLE = s.substring(indexTITLE+6, indexID-2); //TITLE값
+        String CONTENT = s.substring(indexCONTENTS+9,s.indexOf("}")); //CONTENT값
+        String TIME = s.substring(indexTIME+6,indexGENDER-2);
+        ID = s.substring(indexID+3, indexCONTENTS-2); //ID값
+        String NO = s.substring(indexNO+3, indexAREA-2);     //NO값
+        String GENDER = s.substring(indexGENDER+7, indexTITLE-2);    //GENDER값
+        String AREA = s.substring(indexAREA+5, indexTIME-2);   //AREA값
         TITLEView.setText(NO+" "+TITLE);
         textView.setText(AREA+"\n"+GENDER+"\n"+CONTENT);
         Button apply = (Button)findViewById(R.id.apply);
@@ -63,6 +64,7 @@ public class therdlay extends AppCompatActivity implements View.OnClickListener 
         button9.setOnClickListener(this);
         Button button8 = (Button)findViewById(R.id.button8);
         button8.setOnClickListener(this);
+
     }
     public void onClick(View v)
     {
